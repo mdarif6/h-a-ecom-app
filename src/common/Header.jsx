@@ -3,8 +3,8 @@ export default function Header() {
   return (
     <header className="ha-header-gtr">
       <div className="ha-logo">
-        <a href="/index.html">
-          <img src={img1} alt="" />
+        <a href="#">
+          <img src={img1} alt="logo-image" />
         </a>
       </div>
 
@@ -22,7 +22,7 @@ export default function Header() {
         </div>
         <div className="header-icons">
           <div className="ha-nav-icons">
-            <a href="/login_page/login_page.html">
+            <a href="#">
               <button className="ha-nav-btn">Login</button>
             </a>
 

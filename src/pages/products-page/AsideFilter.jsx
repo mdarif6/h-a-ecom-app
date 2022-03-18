@@ -39,38 +39,45 @@ export default function AsideFilter() {
         <h3>Rating</h3>
 
         <form action="radio">
-          <input
-            type="radio"
-            id="4 Stars & above"
-            value="4 Stars & above"
-            name="h-radio"
-          />
-          <label for="4 Stars & above">4 Stars & above</label>
-          <br />
-          <input
-            type="radio"
-            id="3 Stars & above"
-            value="3 Stars & above"
-            name="h-radio"
-          />
-          <label for="3 Stars & above">3 Stars & above</label>
-          <br />
-          <input
-            type="radio"
-            id="2 Stars & above"
-            value="2 Stars & above"
-            name="h-radio"
-          />
-          <label for="2 Stars & above">2 Stars & above</label>
-          <br />
-          <input
-            type="radio"
-            id="1 Stars & above"
-            value="4 Stars & above"
-            name="h-radio"
-          />
-          <label for="1 Stars & above">1 Stars & above</label>
-          <br />
+          <div>
+            <input
+              type="radio"
+              id="4 Stars & above"
+              value="4 Stars & above"
+              name="h-radio"
+            />
+            <label for="4 Stars & above">4 Stars & above</label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="3 Stars & above"
+              value="3 Stars & above"
+              name="h-radio"
+            />
+            <label for="3 Stars & above">3 Stars & above</label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="2 Stars & above"
+              value="2 Stars & above"
+              name="h-radio"
+            />
+            <label for="2 Stars & above">2 Stars & above</label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="1 Stars & above"
+              value="4 Stars & above"
+              name="h-radio"
+            />
+            <label for="1 Stars & above">1 Stars & above</label>
+          </div>
         </form>
       </div>
 

@@ -1,4 +1,5 @@
 import img3 from "../../assets/images/Jeans1.JPG";
+
 export default function Main() {
   return (
     <main className="ha-cart-gtr">
