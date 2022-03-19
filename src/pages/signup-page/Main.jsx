@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Main() {
   return (
     <main className="ha-login-gtr">
@@ -27,10 +29,10 @@ export default function Main() {
             </div>
             <button className="btn btn-primary">Create New Account</button>
             <div className="login-bottom-text">
-              <a href="/login_page/login_page.html">
+              <Link to="/login">
                 Already have an account
                 <i className="fas fa-chevron-right"></i>
-              </a>
+              </Link>
             </div>
           </form>
         </div>
