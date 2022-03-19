@@ -21,18 +21,34 @@ export default function AsideFilter() {
       </div>
 
       <form action="check">
-        <input type="checkbox" name="category1" id="category1" value="men" />
-        <label for="category1">Men</label>
-        <br />
-        <input type="checkbox" name="category2" id="category2" value="women" />
-        <label for="category2">Women</label>
-        <br />
-        <input type="checkbox" name="category3" id="category3" value="kids" />
-        <label for="category3">Kids</label>
-        <br />
-        <input type="checkbox" name="category4" id="category4" value="indie" />
-        <label for="category4">Inide</label>
-        <br />
+        <div>
+          <input type="checkbox" name="category1" id="category1" value="men" />
+          <label for="category1">Men</label>
+        </div>
+
+        <div>
+          <input
+            type="checkbox"
+            name="category2"
+            id="category2"
+            value="women"
+          />
+          <label for="category2">Women</label>
+        </div>
+        <div>
+          <input type="checkbox" name="category3" id="category3" value="kids" />
+          <label for="category3">Kids</label>
+        </div>
+
+        <div>
+          <input
+            type="checkbox"
+            name="category4"
+            id="category4"
+            value="indie"
+          />
+          <label for="category4">Inide</label>
+        </div>
       </form>
 
       <div className="rating">
@@ -82,24 +98,27 @@ export default function AsideFilter() {
       </div>
 
       <div className="sorting">
-        <h3>Sort By</h3>
+        <h3>Sort By Price</h3>
         <form action="radio">
-          <input
-            type="radio"
-            id="price value"
-            value="Price - Low to High"
-            name="h-radio"
-          />
-          <label for="Price - Low to High">Price - Low to High</label>
-          <br />
-          <input
-            type="radio"
-            id="price value"
-            value="Price - High to Low"
-            name="h-radio"
-          />
-          <label for="Price - High to Low">Price - High to Low</label>
-          <br />
+          <div>
+            <input
+              type="radio"
+              id="price value"
+              value="Price - Low to High"
+              name="h-radio"
+            />
+            <label for="Low to High">Low to High</label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="price value"
+              value="High to Low"
+              name="h-radio"
+            />
+            <label for="Price - High to Low">High to Low</label>
+          </div>
         </form>
       </div>
     </aside>

@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 import img1 from "../assets/images/logo.png";
 export default function Header() {
   return (
     <header className="ha-header-gtr">
       <div className="ha-logo">
-        <a href="#">
+        <Link to="/">
           <img src={img1} alt="logo-image" />
-        </a>
+        </Link>
       </div>
 
       <div className="search-and-icons">
@@ -22,24 +23,25 @@ export default function Header() {
         </div>
         <div className="header-icons">
           <div className="ha-nav-icons">
-            <a href="#">
+            <Link to="/login">
               <button className="ha-nav-btn">Login</button>
-            </a>
+            </Link>
 
             <div className="badge-icon">
               <div className="badge-on-icon">
-                <a href="/wishlist_page/wishlist_page.html">
+                <Link to="/wishlist">
                   <i className="fas fa-heart"></i>
-                </a>
+                </Link>
               </div>
               <span className="badge-number">0</span>
             </div>
 
             <div className="badge-icon">
               <div className="badge-on-icon">
-                <a href="/cart_page/cart_page.html">
+                <Link to="/cart">
                   <i className="fas fa-shopping-cart"></i>
-                </a>
+                </Link>
+
                 <span className="badge-number">0</span>
               </div>
             </div>
