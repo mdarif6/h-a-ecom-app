@@ -1,0 +1,13 @@
+.ha-signup-content > * {
+  padding: 0.625rem;
+  text-align: center;
+}
+
+.ha-signup-content {
+  position: relative;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 0.625rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content auto min-content;
+}

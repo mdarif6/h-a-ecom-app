@@ -1,0 +1,31 @@
+.ha-wish-content > * {
+  padding: 0.625rem;
+  text-align: center;
+}
+
+.ha-wish-content {
+  position: relative;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 0.625rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content auto min-content;
+}
+
+.ha-wish-gtr {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  background-color: var(--ha-light-background-color);
+}
+
+.ha-main-wishlist-product {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 6rem;
+}
+
+.wishlist-heading {
+  padding: 1rem;
+}
