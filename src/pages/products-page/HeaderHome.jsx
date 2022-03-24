@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import img1 from "../../assets/images/logo.png";
+import { useProduct } from "../../product-context";
 export default function HeaderHome() {
+  const { state, dispatch } = useProduct();
+
   return (
     <header className="ha-header">
       <div className="ha-logo">
@@ -16,6 +19,12 @@ export default function HeaderHome() {
             type="text"
             name="name"
             placeholder="search"
+            onChange={(e) => {
+              dispatch({
+                type: "SEARCH_ENTER",
+                payload: { name: "SEARCH_ENTER", value: e.target.value },
+              });
+            }}
           />
           <a className="ha-search-button" href="#">
             <i className="fas fa-search"></i>
@@ -33,7 +42,7 @@ export default function HeaderHome() {
                   <i className="fas fa-heart"></i>
                 </Link>
               </div>
-              <span className="badge-number">0</span>
+              <span className="badge-number">{state.wishList.length}</span>
             </div>
 
             <div className="badge-icon">
@@ -42,7 +51,7 @@ export default function HeaderHome() {
                   <i className="fas fa-shopping-cart"></i>
                 </Link>
 
-                <span className="badge-number">0</span>
+                <span className="badge-number">{state.cartList.length}</span>
               </div>
             </div>
           </div>

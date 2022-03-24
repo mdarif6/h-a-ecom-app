@@ -1,0 +1,147 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+.ha-prod-content > * {
+  padding: 0.625rem;
+}
+
+.ha-prod-content {
+  position: relative;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 0.625rem;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  grid-template-areas:
+    "header header header header header header"
+    " aside main main main main main"
+    "footer footer footer footer footer footer";
+}
+
+/* Aside */
+
+.ha-aside > * {
+  margin: 1.3rem;
+}
+.ha-aside {
+  grid-area: aside;
+  background-color: var(--ha-light-background-color);
+}
+
+.aside-top-heading {
+  line-height: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.label-container {
+  display: flex;
+  gap: 2rem;
+}
+.slider-container,
+.slider-container input {
+  width: 85%;
+}
+
+/* Main */
+
+.h-main-heading {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0 0 1.5rem 4rem;
+}
+
+.ha-grid-main {
+  padding: 0 4rem 0 4rem;
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.h-grid-product {
+  position: relative;
+  width: 15.625rem;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--ha-white-colr);
+}
+.product-name {
+  color: var(--ha-primary-color);
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin: 0;
+}
+.product-desc {
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+.h-product-bottom small {
+  color: var(--ha-price-color);
+  font-weight: bold;
+}
+
+.h-product-icon i {
+  position: absolute;
+  font-size: 1rem;
+  top: 0.2rem;
+  right: 0.2rem;
+  color: var(--ha-icon-colr);
+  background-color: var(--ha-white-color);
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.wish-listed i {
+  color: var(--ha-primary-color);
+}
+.h-product-icon i:hover {
+  color: var(--ha-primary-color);
+}
+
+.h-grid-product img {
+  width: 100%;
+}
+
+.h-product-bottom {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+.h-product-button {
+  padding: 0.5rem 0 0.5rem 0;
+  font-size: 1rem;
+  border: none;
+  background-color: var(--ha-primary-color);
+  color: var(--ha-white-color);
+  margin-top: 0.5rem;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 800px) {
+  .ha-prod-content {
+    grid-template-areas:
+      "header header header header header header"
+      " aside main main main main main"
+      "footer footer footer footer footer footer";
+  }
+
+  .ha-search-box {
+    display: none;
+  }
+
+  .h-main-heading {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .ha-grid-main {
+    padding: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+  }
+}

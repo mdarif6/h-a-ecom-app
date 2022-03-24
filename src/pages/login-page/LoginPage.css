@@ -1,0 +1,151 @@
+.ha-login-content > * {
+  padding: 0.625rem;
+  text-align: center;
+}
+
+.ha-login-content {
+  position: relative;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 0.625rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content auto min-content;
+}
+
+.ha-header-gtr {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: var(--ha-light-background-color);
+  box-shadow: 0 0.375rem 0.375rem -0.25rem var(--ha-primary-color);
+}
+
+.ha-header-gtr div:last-child {
+  margin-left: auto;
+}
+/* Main Section for Login window */
+
+.ha-login-gtr {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  background-color: var(--ha-light-background-color);
+}
+
+.ha-login-window {
+  padding: 2rem;
+}
+.h-login-container {
+  background-color: var(--ha-white-color);
+  padding: 0.5rem;
+  width: 25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+.h-input-text {
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.h-input-text label {
+  text-align: left;
+}
+.h-input-text label,
+.login-check,
+.login-bottom-text {
+  font-size: 1rem;
+}
+
+.login-bottom-text a {
+  text-decoration: none;
+  color: var(--ha-secondary-color);
+}
+.h-input-text input {
+  width: 100%;
+  border-radius: 0.313rem;
+  padding: 0.5rem 9rem 0.5rem 0.5rem;
+  font-size: large;
+  border: 1px solid;
+  opacity: 0.4;
+}
+
+.login-check {
+  display: flex;
+  padding-bottom: 1rem;
+}
+
+.login-check div {
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.login-check a {
+  text-decoration: none;
+  color: var(--ha-secondary-color);
+}
+
+.btn-primary {
+  width: 100%;
+  font-size: 1rem;
+  background-color: var(--ha-primary-color);
+}
+.btn-primary:hover {
+  background-color: var(--ha-secondary-color);
+}
+.login-bottom-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-top: 1rem;
+}
+/* Footer */
+.ha-footer-gtr {
+  grid-column: 1/2;
+  grid-row: 3/4;
+  background-color: var(--ha-primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-heading,
+.ha-footer-gtr small {
+  color: var(--ha-white-color);
+  padding: 0.7rem 0;
+}
+
+/* Media Query for responsiveness */
+@media only screen and (max-width: 800px) {
+  .h-login-container {
+    width: 16rem;
+  }
+  .h-input-text input {
+    width: 80%;
+    padding: 0.3rem 0 0.3rem 0;
+    margin: auto;
+  }
+  .btn-primary {
+    width: 80%;
+  }
+
+  .login-check {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .h-input-text label,
+  .login-check,
+  .login-check-label input,
+  .login-check-label label,
+  .login-bottom-text {
+    font-size: 0.8rem;
+    padding-left: 1.2rem;
+  }
+}
