@@ -6,21 +6,24 @@ export default function ProductCard({ item }) {
   return (
     <div class="h-grid-product" key={item._id}>
       <img src={item.image} />
-      <div class="h-product-icon">
-        {state.wishList.some((p) => p._id === item._id) ? (
+
+      {state.wishList.some((p) => p._id === item._id) ? (
+        <div class="h-product-icon h-product-icon-red">
           <i
             class="fas fa-heart"
             onClick={() =>
               dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item })
             }
           ></i>
-        ) : (
+        </div>
+      ) : (
+        <div className="h-product-icon">
           <i
             class="fas fa-heart"
             onClick={() => dispatch({ type: "ADD_TO_WISHLIST", payload: item })}
           ></i>
-        )}
-      </div>
+        </div>
+      )}
 
       <div class="h-product-bottom">
         <p class="product-name">{item.companyName}</p>

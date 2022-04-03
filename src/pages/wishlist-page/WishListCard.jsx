@@ -6,7 +6,12 @@ export default function WishListCard({ item }) {
     <div className="h-grid-product">
       <img src={item.image} alt="" />
       <div className="h-product-icon wish-listed">
-        <i className="fas fa-heart"></i>
+        <i
+          className="fas fa-heart"
+          onClick={() =>
+            dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item })
+          }
+        ></i>
       </div>
 
       <div className="h-product-bottom">

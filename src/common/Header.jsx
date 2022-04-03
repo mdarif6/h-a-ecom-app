@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 import img1 from "../assets/images/logo.png";
+import { useAuth } from "../auth-context";
 import { useProduct } from "../product-context";
+
 export default function Header() {
   const { state, dispatch } = useProduct();
+  const { state: authState, dispatch: authDispatch } = useAuth();
+
+  function logoutHandler() {
+    localStorage.removeItem("authToken");
+    authDispatch({ type: "SET_AUTH", payload: false });
+  }
+
   return (
     <header className="ha-header-gtr">
       <div className="ha-logo">
@@ -25,9 +34,15 @@ export default function Header() {
         </div>
         <div className="header-icons">
           <div className="ha-nav-icons">
-            <Link to="/login">
-              <button className="ha-nav-btn">Login</button>
-            </Link>
+            {authState.isAuthenticated ? (
+              <button className="ha-nav-btn" onClick={logoutHandler}>
+                Logout
+              </button>
+            ) : (
+              <Link to="/login">
+                <button className="ha-nav-btn">Login</button>
+              </Link>
+            )}
 
             <div className="badge-icon">
               <div className="badge-on-icon">

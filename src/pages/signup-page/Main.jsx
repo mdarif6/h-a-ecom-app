@@ -1,20 +1,52 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 export default function Main() {
+  const [register, setRegister] = useState({ email: "", password: "" });
+
+  async function formSubmitHandler(e) {
+    e.preventDefault();
+    console.log(register);
+    try {
+      const response = await axios.post("/api/auth/signup", register);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <main className="ha-login-gtr">
       <div className="ha-login-window">
         <div className="h-login-container">
           <h2>Signup</h2>
-          <form action="inputs">
+          <form action="inputs" onSubmit={formSubmitHandler}>
             <div className="h-input-text">
               <label>Email address</label>
-              <input type="text" placeholder="xyz@email.com" />
+              <input
+                type="text"
+                placeholder="xyz@email.com"
+                onChange={(e) =>
+                  // setRegister({ ...register, email: e.target.value })
+                  setRegister((prevState) => {
+                    return { ...prevState, email: e.target.value };
+                  })
+                }
+              />
             </div>
 
             <div className="h-input-text">
               <label>Password</label>
-              <input type="password" placeholder="***************" />
+              <input
+                type="password"
+                placeholder="***************"
+                onChange={(e) =>
+                  setRegister((prevState) => {
+                    return { ...prevState, password: e.target.value };
+                  })
+                }
+              />
             </div>
             <div className="login-check">
               <div className="login-check-label">

@@ -17,7 +17,13 @@ export default function CartCard({ item }) {
           <p>
             <i
               className="fas fa-minus-circle"
-              onClick={() => dispatch({ type: "DECREMENT", payload: item._id })}
+              onClick={() => {
+                if (item.qty === 1) {
+                  dispatch({ type: "REMOVE_FROM_CART", payload: item });
+                } else {
+                  dispatch({ type: "DECREMENT", payload: item._id });
+                }
+              }}
             ></i>
           </p>
           <p className="h-cart-quantity-number">{item.qty}</p>
@@ -43,7 +49,6 @@ export default function CartCard({ item }) {
             <button
               className="move-btn"
               onClick={() => {
-                dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item });
                 dispatch({ type: "REMOVE_FROM_CART", payload: item });
               }}
             >
@@ -52,9 +57,10 @@ export default function CartCard({ item }) {
           ) : (
             <button
               className="move-btn"
-              onClick={() =>
-                dispatch({ type: "ADD_TO_WISHLIST", payload: item })
-              }
+              onClick={() => {
+                dispatch({ type: "REMOVE_FROM_CART", payload: item });
+                dispatch({ type: "ADD_TO_WISHLIST", payload: item });
+              }}
             >
               Move to Wishlist
             </button>

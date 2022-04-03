@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect } from "react";
+import { useState } from "react";
 import img3 from "../../assets/images/Jeans1.JPG";
 import { products } from "../../backend/db/products";
+import Spinner from "../../common/Spinner";
 import { useProduct } from "../../product-context";
 import ProductCard from "./ProductCard";
 
@@ -9,11 +11,20 @@ export default function Main() {
   const { state, dispatch } = useProduct();
 
   useEffect(() => {
-    fetch("api/products")
-      .then((response) => response.json())
-      .then((data) =>
-        dispatch({ type: "SET_PRODUCTS", payload: data.products })
-      );
+    (async function showProducts() {
+      try {
+        dispatch({ type: "LOADER", payload: true });
+        const response = await axios.get("api/products");
+        dispatch({ type: "LOADER", payload: false });
+        console.log(response.data.products);
+        if (response.status === 200 || response.status === 201) {
+          dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
+        }
+      } catch (error) {
+        console.log(error);
+        dispatch({ type: "LOADER", payload: false });
+      }
+    })();
   }, []);
 
   function sortingByPrice(items, sort) {
@@ -90,16 +101,24 @@ export default function Main() {
   const setBySearch = filterBySearch(setByCategory, state.searchQuery);
 
   return (
-    <main>
-      <div class="h-main-heading">
-        Showing All Proucts{" "}
-        <small>(Showing {setByCategory.length} products)</small>
-      </div>
-      <div class="ha-grid-main">
-        {setBySearch.map((item) => (
-          <ProductCard key={item._id} item={item} />
-        ))}
-      </div>
-    </main>
+    <>
+      {state.loader ? (
+        <Spinner />
+      ) : (
+        <main>
+          <div class="h-main-heading">
+            Showing All Proucts
+            <small>(Showing {setByCategory.length} products)</small>
+          </div>
+
+          <div class="ha-grid-main">
+            {setBySearch &&
+              setBySearch.map((item) => (
+                <ProductCard key={item._id} item={item} />
+              ))}
+          </div>
+        </main>
+      )}
+    </>
   );
 }
