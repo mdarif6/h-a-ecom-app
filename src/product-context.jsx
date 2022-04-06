@@ -1,12 +1,13 @@
 import { createContext } from "react";
 import { useContext } from "react";
 import { useReducer } from "react";
+import { useState } from "react";
 const ProductContext = createContext();
 
 const initialState = {
   sortByPrice: "",
   sortByRating: "",
-  sortByRange: { value: 0 },
+  sortByRange: { name: "", value: 0 },
   searchQuery: [],
   filterBySize: [],
   sortByCategory: [],
@@ -15,10 +16,14 @@ const initialState = {
   cartList: [],
   wishList: [],
   cartPrice: [],
+  loader: false,
 };
 
 function productReducer(state, action) {
   switch (action.type) {
+    case "LOADER":
+      return { ...state, loader: action.payload };
+
     case "ADD_TO_CART":
       return {
         ...state,
@@ -78,10 +83,8 @@ function productReducer(state, action) {
     case "SET_CATEGORIES":
       return { ...state, categories: action.payload };
 
-    case "LOW_TO_HIGH":
-      return { ...state, sortByPrice: action.type };
-    case "HIGH_TO_LOW":
-      return { ...state, sortByPrice: action.type };
+    case "SORTING":
+      return { ...state, sortByPrice: action.payload };
 
     case "SEARCH_ENTER":
       return {
@@ -92,16 +95,8 @@ function productReducer(state, action) {
         ],
       };
 
-    case "FOUR_AND_ABOVE":
-      return { ...state, sortByRating: action.type };
-
-    case "THREE_AND_ABOVE":
-      return { ...state, sortByRating: action.type };
-
-    case "TWO_AND_ABOVE":
-      return { ...state, sortByRating: action.type };
-    case "ONE_AND_ABOVE":
-      return { ...state, sortByRating: action.type };
+    case "RATING":
+      return { ...state, sortByRating: action.payload };
 
     case "BY_RANGE":
       return {
@@ -120,7 +115,8 @@ function productReducer(state, action) {
       removalCategory.splice(indexRemoval, 1);
       console.log(removalCategory);
       return { ...state, sortByCategory: removalCategory };
-
+    case "RESET_CATEGORY":
+      return { ...state, sortByCategory: action.payload };
     default:
       return state;
   }
@@ -128,6 +124,7 @@ function productReducer(state, action) {
 
 const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
+  const [loader, setLoader] = useState(false);
 
   return (
     <ProductContext.Provider value={{ state, dispatch }}>

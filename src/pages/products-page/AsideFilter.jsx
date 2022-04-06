@@ -16,7 +16,17 @@ export default function AsideFilter() {
     <aside className="ha-aside">
       <div className="aside-top-heading">
         <h3>Filter</h3>
-        <h3>Clear</h3>
+        <h3
+          className="ha-clear-filter"
+          onClick={() => {
+            dispatch({ type: "SORTING", payload: "" });
+            dispatch({ type: "RATING", payload: "" });
+            dispatch({ type: "BY_RANGE", payload: { name: "", value: 0 } });
+            dispatch({ type: "RESET_CATEGORY", payload: [] });
+          }}
+        >
+          Clear
+        </h3>
       </div>
       <h3>Price</h3>
       <div className="slider-container">
@@ -31,6 +41,7 @@ export default function AsideFilter() {
           step="100"
           min="100"
           max="3000"
+          value={state.sortByRange.value}
           onChange={(e) => {
             dispatch({
               type: "BY_RANGE",
@@ -54,77 +65,92 @@ export default function AsideFilter() {
         <h3>Rating</h3>
 
         <form action="radio">
-          <div>
-            <input
-              type="radio"
-              id="4 Stars & above"
-              value="4 Stars & above"
-              name="h-radio"
-              onChange={() => dispatch({ type: "FOUR_AND_ABOVE" })}
-            />
-            <label for="4 Stars & above">4 Stars & above</label>
-          </div>
+          <div className="ha-rating-parent">
+            <div>
+              <input
+                type="radio"
+                id="4Stars"
+                checked={state.sortByRating === "FOUR_AND_ABOVE"}
+                name="h-radio"
+                onChange={() =>
+                  dispatch({ type: "RATING", payload: "FOUR_AND_ABOVE" })
+                }
+              />
+              <label for="4Stars">4 Stars & above</label>
+            </div>
 
-          <div>
-            <input
-              type="radio"
-              id="3 Stars & above"
-              value="3 Stars & above"
-              name="h-radio"
-              onChange={() => dispatch({ type: "THREE_AND_ABOVE" })}
-            />
-            <label for="3 Stars & above">3 Stars & above</label>
-          </div>
+            <div>
+              <input
+                type="radio"
+                id="3Stars"
+                checked={state.sortByRating === "THREE_AND_ABOVE"}
+                name="h-radio"
+                onChange={() =>
+                  dispatch({ type: "RATING", payload: "THREE_AND_ABOVE" })
+                }
+              />
+              <label for="3Stars">3 Stars & above</label>
+            </div>
 
-          <div>
-            <input
-              type="radio"
-              id="2 Stars & above"
-              value="2 Stars & above"
-              name="h-radio"
-              onChange={() => dispatch({ type: "TWO_AND_ABOVE" })}
-            />
-            <label for="2 Stars & above">2 Stars & above</label>
-          </div>
+            <div>
+              <input
+                type="radio"
+                id="2Stars"
+                checked={state.sortByRating === "TWO_AND_ABOVE"}
+                name="h-radio"
+                onChange={() =>
+                  dispatch({ type: "RATING", payload: "TWO_AND_ABOVE" })
+                }
+              />
+              <label for="2Stars">2 Stars & above</label>
+            </div>
 
-          <div>
-            <input
-              type="radio"
-              id="1 Stars & above"
-              value="4 Stars & above"
-              name="h-radio"
-              onChange={() => dispatch({ type: "ONE_AND_ABOVE" })}
-            />
-            <label for="1 Stars & above">1 Stars & above</label>
+            <div>
+              <input
+                type="radio"
+                id="1Stars"
+                checked={state.sortByRating === "ONE_AND_ABOVE"}
+                name="h-radio"
+                onChange={() =>
+                  dispatch({ type: "RATING", payload: "ONE_AND_ABOVE" })
+                }
+              />
+              <label for="1Stars">1 Stars & above</label>
+            </div>
           </div>
         </form>
       </div>
 
       <div className="sorting">
         <h3>Sort By Price</h3>
-        <form action="radio">
+
+        <div className="ha-sorting-parent">
           <div>
             <input
               type="radio"
-              id="price value"
-              value="Price - Low to High"
+              id="LowtoHigh"
+              checked={state.sortByPrice === "LOW_TO_HIGH"}
               name="h-radio"
-              onChange={() => dispatch({ type: "LOW_TO_HIGH" })}
+              onChange={() =>
+                dispatch({ type: "SORTING", payload: "LOW_TO_HIGH" })
+              }
             />
-            <label for="Low to High">Low to High</label>
+            <label for="LowtoHigh">Low to High</label>
           </div>
 
           <div>
             <input
               type="radio"
-              id="price value"
-              value="High to Low"
+              id="HightoLow"
+              checked={state.sortByPrice === "HIGH_TO_LOW"}
               name="h-radio"
-              onChange={() => dispatch({ type: "HIGH_TO_LOW" })}
+              onChange={() =>
+                dispatch({ type: "SORTING", payload: "HIGH_TO_LOW" })
+              }
             />
-            <label for="Price - High to Low">High to Low</label>
+            <label for="HightoLow">High to Low</label>
           </div>
-        </form>
+        </div>
       </div>
     </aside>
   );

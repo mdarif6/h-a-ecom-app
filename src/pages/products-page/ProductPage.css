@@ -34,7 +34,16 @@ body {
   display: flex;
   justify-content: space-between;
 }
-
+.ha-clear-filter {
+  cursor: pointer;
+}
+.ha-clear-filter:hover {
+  color: var(--ha-primary-color);
+}
+.ha-rating-parent div,
+.ha-sorting-parent div {
+  margin-top: 0.7rem;
+}
 .label-container {
   display: flex;
   gap: 2rem;
@@ -95,7 +104,7 @@ body {
 .wish-listed i {
   color: var(--ha-primary-color);
 }
-.h-product-icon i:hover {
+.h-product-icon-red i {
   color: var(--ha-primary-color);
 }
 
