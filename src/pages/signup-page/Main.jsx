@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { useAuth } from "../../auth-context";
 
 export default function Main() {
   const [register, setRegister] = useState({ email: "", password: "" });
+  const { dispatch } = useAuth();
+  const navigate = useNavigate();
 
   async function formSubmitHandler(e) {
     e.preventDefault();
@@ -11,6 +14,12 @@ export default function Main() {
     try {
       const response = await axios.post("/api/auth/signup", register);
       console.log(response);
+
+      if (response.status === 200 || response.status === 201) {
+        localStorage.setItem("authToken", response.data.encodedToken);
+        navigate("/products");
+        dispatch({ type: "SET_AUTH", payload: true });
+      }
     } catch (error) {
       console.log(error);
     }
