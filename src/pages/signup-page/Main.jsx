@@ -10,10 +10,9 @@ export default function Main() {
 
   async function formSubmitHandler(e) {
     e.preventDefault();
-    console.log(register);
+
     try {
       const response = await axios.post("/api/auth/signup", register);
-      console.log(response);
 
       if (response.status === 200 || response.status === 201) {
         localStorage.setItem("authToken", response.data.encodedToken);
@@ -37,7 +36,6 @@ export default function Main() {
                 type="text"
                 placeholder="xyz@email.com"
                 onChange={(e) =>
-                  // setRegister({ ...register, email: e.target.value })
                   setRegister((prevState) => {
                     return { ...prevState, email: e.target.value };
                   })
