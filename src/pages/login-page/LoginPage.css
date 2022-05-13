@@ -90,6 +90,7 @@
 }
 
 .btn-primary {
+  margin: 0;
   width: 100%;
   font-size: 1rem;
   background-color: var(--ha-primary-color);
@@ -97,6 +98,19 @@
 .btn-primary:hover {
   background-color: var(--ha-secondary-color);
 }
+
+.outline-primary {
+  margin-top: 1rem;
+  width: 370px;
+  font-size: 1rem;
+  color: var(--ha-primary-color) !important ;
+}
+
+.outline-primary:hover {
+  color: var(--ha-white-color) !important;
+  background-color: var(--ha-secondary-color) !important;
+}
+
 .login-bottom-text {
   display: flex;
   align-items: center;
@@ -133,6 +147,10 @@
   }
   .btn-primary {
     width: 80%;
+  }
+
+  .outline-primary {
+    width: 180px;
   }
 
   .login-check {

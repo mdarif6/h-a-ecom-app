@@ -8,7 +8,7 @@ const initialState = {
   sortByPrice: "",
   sortByRating: "",
   sortByRange: { name: "", value: 0 },
-  searchQuery: [],
+  searchQuery: "",
   filterBySize: [],
   sortByCategory: [],
   products: [],
@@ -28,16 +28,23 @@ function productReducer(state, action) {
       return {
         ...state,
         cartList: [...state.cartList, { ...action.payload, qty: 1 }],
-        // cartPrice: [...state.cartPrice, { ...action.payload, qty: 1 }],
       };
 
     case "REMOVE_FROM_CART":
       return {
         ...state,
         cartList: state.cartList.filter((c) => c.id !== action.payload.id),
-        // cartPrice: state.cartPrice.filter((c) => c.id !== action.payload.id),
       };
-
+    case "CART_UPDATE":
+      return {
+        ...state,
+        cartList: action.payload,
+      };
+    case "WISHLIST_UPDATE":
+      return {
+        ...state,
+        wishList: action.payload,
+      };
     case "ADD_TO_WISHLIST":
       return {
         ...state,
@@ -57,7 +64,7 @@ function productReducer(state, action) {
       const cartIndex = newCartList.findIndex(
         (item) => item._id === action.payload
       );
-      console.log("hi", action.payload);
+
       //copy the current item object
       const qtyUpdate = { ...newCartList[cartIndex] };
       //update quantity
@@ -87,12 +94,17 @@ function productReducer(state, action) {
       return { ...state, sortByPrice: action.payload };
 
     case "SEARCH_ENTER":
+      // return {
+      //   ...state,
+      //   searchQuery: [
+      //     [...state.searchQuery],
+      //     { name: action.payload.name, value: action.payload.value },
+      //   ],
+      // };
+
       return {
         ...state,
-        searchQuery: [
-          [...state.searchQuery],
-          { name: action.payload.name, value: action.payload.value },
-        ],
+        searchQuery: action.payload,
       };
 
     case "RATING":
@@ -113,7 +125,7 @@ function productReducer(state, action) {
       const removalCategory = [...state.sortByCategory];
       const indexRemoval = removalCategory.indexOf(action.payload);
       removalCategory.splice(indexRemoval, 1);
-      console.log(removalCategory);
+
       return { ...state, sortByCategory: removalCategory };
     case "RESET_CATEGORY":
       return { ...state, sortByCategory: action.payload };

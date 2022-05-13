@@ -2,7 +2,7 @@ import { useProduct } from "../../product-context";
 import WishListCard from "./WishListCard";
 export default function () {
   const { state, dispatch } = useProduct();
-  console.log(state.wishList);
+
   return (
     <main className="ha-wish-gtr">
       <div className="wishlist-heading">
