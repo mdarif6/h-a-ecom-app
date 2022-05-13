@@ -16,7 +16,7 @@ export default function Main() {
         dispatch({ type: "LOADER", payload: true });
         const response = await axios.get("api/products");
         dispatch({ type: "LOADER", payload: false });
-        console.log(response.data.products);
+
         if (response.status === 200 || response.status === 201) {
           dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
         }
@@ -42,16 +42,12 @@ export default function Main() {
   function sortingByRating(items, sort) {
     if (sort === "FOUR_AND_ABOVE") {
       return items.filter((item) => item.rating >= 4);
-      // .sort((a, b) => b.rating - a.rating);
     } else if (sort === "THREE_AND_ABOVE") {
       return items.filter((item) => item.rating >= 3);
-      // .sort((a, b) => b.rating - a.rating);
     } else if (sort === "TWO_AND_ABOVE") {
       return items.filter((item) => item.rating >= 2);
-      // .sort((a, b) => b.rating - a.rating);
     } else if (sort === "ONE_AND_ABOVE") {
       return items.filter((item) => item.rating >= 1);
-      // .sort((a, b) => b.rating - a.rating);
     } else {
       return items;
     }
@@ -85,7 +81,7 @@ export default function Main() {
   function filterBySearch(items, search) {
     if (search.name === "SEARCH_ENTER") {
       return items.filter((item) => {
-        if (item.searchQuery.includes(search.value)) {
+        if (item.design.toLowerCase().includes(search.value.toLowerCase())) {
           return item;
         }
       });

@@ -11,7 +11,7 @@ export default function Main() {
 
   async function submitHandler(e) {
     e.preventDefault();
-    console.log(email, password);
+
     try {
       const response = await axios.post("/api/auth/login", {
         email: email,
@@ -23,7 +23,22 @@ export default function Main() {
         navigate("/products");
         dispatch({ type: "SET_AUTH", payload: true });
       }
-      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function loginAsGuest() {
+    try {
+      const response = await axios.post("api/auth/login", {
+        email: "adarshbalika@gmail.com",
+        password: "adarshbalika",
+      });
+      if (response.status === 200 || response.status === 201) {
+        localStorage.setItem("authToken", response.data.encodedToken);
+        navigate("/");
+        dispatch({ type: "SET_AUTH", payload: true });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -69,12 +84,17 @@ export default function Main() {
             <a href="#">
               <button className="btn btn-primary">Login</button>
             </a>
-            <div className="login-bottom-text">
-              <Link to="/signup">
-                Create New Account <i className="fas fa-chevron-right"></i>
-              </Link>
-            </div>
           </form>
+          <a href="#">
+            <button className="btn outline-primary" onClick={loginAsGuest}>
+              Login as a guest
+            </button>
+          </a>
+          <div className="login-bottom-text">
+            <Link to="/signup">
+              Create New Account <i className="fas fa-chevron-right"></i>
+            </Link>
+          </div>
         </div>
       </div>
     </main>

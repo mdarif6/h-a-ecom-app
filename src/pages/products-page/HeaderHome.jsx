@@ -30,6 +30,7 @@ export default function HeaderHome() {
             onChange={(e) => {
               dispatch({
                 type: "SEARCH_ENTER",
+
                 payload: { name: "SEARCH_ENTER", value: e.target.value },
               });
             }}

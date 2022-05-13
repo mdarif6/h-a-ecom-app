@@ -1,7 +1,67 @@
+import axios from "axios";
+import { useEffect } from "react";
 import { useProduct } from "../../product-context";
 
 export default function CartCard({ item }) {
   const { state, dispatch } = useProduct();
+
+  useEffect(() => {
+    async function getCartProduct() {
+      let token = localStorage.getItem("authToken");
+
+      const response = await axios.get("/api/user/cart", {
+        headers: {
+          authorization: token,
+        },
+      });
+
+      if (response.status === 200) {
+        dispatch({ type: "CART_UPDATE", payload: response.data.cart });
+      }
+    }
+    getCartProduct();
+  }, []);
+
+  async function removeCartHandler(item) {
+    let token = localStorage.getItem("authToken");
+    try {
+      const response = await axios.delete(`/api/user/cart/${item._id}`, {
+        headers: {
+          authorization: token,
+        },
+      });
+
+      if (response.status === 200) {
+        dispatch({ type: "REMOVE_FROM_CART", payload: item });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function addToWishListHandler() {
+    let token = localStorage.getItem("authToken");
+    try {
+      const response = await axios.post(
+        "/api/user/wishlist",
+        {
+          product: item,
+        },
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        dispatch({ type: "ADD_TO_WISHLIST", payload: item });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="h-imagecart-wrapper">
       <div className="image-cart">
@@ -38,9 +98,10 @@ export default function CartCard({ item }) {
         <div className="image-cart-btn">
           <button
             className="remove-btn"
-            onClick={() =>
-              dispatch({ type: "REMOVE_FROM_CART", payload: item })
-            }
+            // onClick={() =>
+            //   dispatch({ type: "REMOVE_FROM_CART", payload: item })
+            // }
+            onClick={() => removeCartHandler(item)}
           >
             Remove From Cart
           </button>
@@ -48,18 +109,23 @@ export default function CartCard({ item }) {
           {state.wishList.some((p) => p._id === item._id) ? (
             <button
               className="move-btn"
-              onClick={() => {
-                dispatch({ type: "REMOVE_FROM_CART", payload: item });
-              }}
+              // onClick={() => {
+              //   dispatch({ type: "REMOVE_FROM_CART", payload: item });
+              // }}
+              onClick={() => removeCartHandler(item)}
             >
               Move to Wishlist
             </button>
           ) : (
             <button
               className="move-btn"
+              // onClick={() => {
+              //   dispatch({ type: "REMOVE_FROM_CART", payload: item });
+              //   dispatch({ type: "ADD_TO_WISHLIST", payload: item });
+              // }}
               onClick={() => {
-                dispatch({ type: "REMOVE_FROM_CART", payload: item });
-                dispatch({ type: "ADD_TO_WISHLIST", payload: item });
+                addToWishListHandler(item);
+                removeCartHandler(item);
               }}
             >
               Move to Wishlist

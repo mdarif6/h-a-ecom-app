@@ -126,6 +126,7 @@ body {
   background-color: var(--ha-primary-color);
   color: var(--ha-white-color);
   margin-top: 0.5rem;
+  cursor: pointer;
 }
 
 /* Media Queries */
