@@ -4,7 +4,11 @@ import axios from "axios";
 import { useAuth } from "../../auth-context";
 
 export default function Main() {
-  const [register, setRegister] = useState({ email: "", password: "" });
+  const [register, setRegister] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const { dispatch } = useAuth();
   const navigate = useNavigate();
 
@@ -18,6 +22,7 @@ export default function Main() {
         localStorage.setItem("authToken", response.data.encodedToken);
         navigate("/products");
         dispatch({ type: "SET_AUTH", payload: true });
+        dispatch({ type: "ADD_USERINFO", payload: response.data.createdUser });
       }
     } catch (error) {
       console.log(error);
@@ -30,6 +35,19 @@ export default function Main() {
         <div className="h-login-container">
           <h2>Signup</h2>
           <form action="inputs" onSubmit={formSubmitHandler}>
+            <div className="h-input-text">
+              <label>Name</label>
+              <input
+                type="text"
+                placeholder="xyz"
+                onChange={(e) =>
+                  setRegister((prevState) => {
+                    return { ...prevState, name: e.target.value };
+                  })
+                }
+              />
+            </div>
+
             <div className="h-input-text">
               <label>Email address</label>
               <input

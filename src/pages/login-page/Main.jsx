@@ -22,6 +22,7 @@ export default function Main() {
         localStorage.setItem("authToken", response.data.encodedToken);
         navigate("/products");
         dispatch({ type: "SET_AUTH", payload: true });
+        dispatch({ type: "ADD_USERINFO", payload: response.data.foundUser });
       }
     } catch (error) {
       console.log(error);
@@ -34,10 +35,12 @@ export default function Main() {
         email: "adarshbalika@gmail.com",
         password: "adarshbalika",
       });
+
       if (response.status === 200 || response.status === 201) {
         localStorage.setItem("authToken", response.data.encodedToken);
         navigate("/");
         dispatch({ type: "SET_AUTH", payload: true });
+        dispatch({ type: "ADD_USERINFO", payload: response.data.foundUser });
       }
     } catch (error) {
       console.log(error);

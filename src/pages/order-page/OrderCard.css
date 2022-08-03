@@ -1,0 +1,27 @@
+.order-card-img {
+  width: 110px;
+}
+.order-product-detials {
+  display: flex;
+  padding: 0.5rem 0;
+}
+.order-cards {
+  opacity: 1;
+}
+.order-confirmation {
+  color: var(--ha-price-color);
+  font-weight: bold;
+}
+
+.order-total-price span {
+  font-weight: bold;
+}
+.order-card-product-desc {
+  padding: 0 1rem;
+}
+.order-card-product-desc p {
+  line-height: 1.2rem;
+}
+.order-card-product-desc p span {
+  font-weight: bold;
+}

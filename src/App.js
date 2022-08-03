@@ -11,6 +11,12 @@ import PrivateRoute from "./common/PrivateRoute";
 import Mockman from "mockman-js";
 import { useEffect } from "react";
 import { useAuth } from "./auth-context";
+import AccountPage from "./pages/account-page/AccountPage";
+import Modal from "./pages/modal/Modal";
+import ShippingPage from "./pages/shipping-page/ShippingPage";
+import ShippingModal from "./pages/modal/ShippingModal";
+import OrderCard from "./pages/order-page/OrderCard";
+import SuccessPage from "./pages/success-page/SuccessPage";
 
 function App() {
   const { state, dispatch } = useAuth();
@@ -47,6 +53,12 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/mockman" element={<Mockman />} />
+        <Route path="/my-account" element={<AccountPage />} />
+        <Route path="shipping" element={<ShippingPage />} />
+        <Route path="/modal" element={<Modal />} />
+        <Route path="/smodal" element={<ShippingModal />} />
+        <Route path="/order" element={<OrderCard />} />
+        <Route path="/order-success" element={<SuccessPage />} />
       </Routes>
     </div>
   );

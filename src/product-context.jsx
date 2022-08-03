@@ -17,6 +17,9 @@ const initialState = {
   wishList: [],
   cartPrice: [],
   loader: false,
+  address: [],
+  orders: [],
+  selectedAdr: {},
 };
 
 function productReducer(state, action) {
@@ -129,6 +132,23 @@ function productReducer(state, action) {
       return { ...state, sortByCategory: removalCategory };
     case "RESET_CATEGORY":
       return { ...state, sortByCategory: action.payload };
+
+    case "ADD_ADDRESS":
+      return { ...state, address: action.payload };
+
+    case "ADD_ORDERS":
+      return { ...state, orders: action.payload };
+
+    case "ADD_SELECTED_ADDR":
+      return { ...state, selectedAdr: action.payload };
+
+    // case "DELETE_ADDRESS":
+    //   const updatedAddress = state.address.filter((item) => {
+    //     item._id !== action.payload;
+    //   });
+
+    // return { ...state, address: updatedAddress };
+
     default:
       return state;
   }

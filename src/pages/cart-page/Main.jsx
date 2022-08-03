@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useProduct } from "../../product-context";
 import CartCard from "./CartCard";
 import CartPrice from "./CartPrice";
@@ -41,7 +42,18 @@ export default function Main() {
             <div className="price-comment">
               You will save Rs1999 on this order
             </div>
-            <button className="remove-btn price-btn">PLACE ORDER</button>
+            <Link to="/shipping">
+              <button
+                className={
+                  state.cartList.length > 0
+                    ? "remove-btn price-btn"
+                    : "remove-btn price-btn disabled-btn"
+                }
+                disabled={state.cartList.length > 0 ? false : true}
+              >
+                PROCEED TO SHIPPING
+              </button>
+            </Link>
           </div>
         </div>
       </div>

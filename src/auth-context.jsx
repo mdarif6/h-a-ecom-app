@@ -6,12 +6,16 @@ const AuthContext = createContext();
 
 const initialState = {
   isAuthenticated: false,
+  userInfo: {},
 };
 
 function authReducer(state, action) {
   switch (action.type) {
     case "SET_AUTH":
       return { ...state, isAuthenticated: action.payload };
+
+    case "ADD_USERINFO":
+      return { ...state, userInfo: action.payload };
 
     default:
       return state;

@@ -1,0 +1,21 @@
+.ha-selected-address {
+  text-align: left;
+  padding-right: 4rem;
+}
+.ha-selected-address .name {
+  color: var(--ha-primary-color);
+  font-weight: bold;
+  padding: 1rem 0;
+}
+.selected-address {
+  line-height: 1rem;
+}
+
+@media only screen and (max-width: 800px) {
+  .select-addr-btn {
+    width: auto;
+  }
+  .ha-selected-address {
+    width: 78%;
+  }
+}
