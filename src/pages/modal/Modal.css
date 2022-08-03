@@ -1,0 +1,92 @@
+.ha-modal-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(218, 212, 212, 0.5);
+}
+/* .ha-modal-wrapper {
+  height: 100vh;
+  position: relative;
+  background-color: rgba(236, 99, 99, 0.5);
+} */
+.ha-modal-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem;
+  z-index: 99;
+}
+.ha-address-bottom-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-cancel {
+  width: 50%;
+  margin: 0;
+}
+.btn-save {
+  width: 50%;
+}
+
+.ha-shipping-modal-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(218, 212, 212, 0.5);
+  overflow: scroll;
+}
+.address-and-closebtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  text-align: left;
+}
+.shipping-modal-close {
+  font-size: 1.2rem;
+  margin: 0.2rem 0.2rem 0 0;
+  color: var(--ha-primary-color);
+}
+
+.address-close {
+  display: flex;
+}
+.address-close i {
+  margin-left: auto;
+}
+.card-for-modal {
+  margin: 0;
+  border: none;
+}
+
+.address-and-radio {
+  display: flex;
+}
+
+.shipping-radio {
+  display: flex;
+}
+
+.address-radio {
+  margin: 0.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+.address-display {
+  display: flex;
+  flex-wrap: wrap;
+}
+.address-and-btn-wrapper {
+  background-color: white;
+  margin-top: 1rem;
+}

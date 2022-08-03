@@ -27,7 +27,7 @@
 
 /* Header */
 
-.ha-header {
+.ha-header-home {
   grid-area: header;
   align-items: center;
   justify-content: center;
@@ -36,7 +36,7 @@
   box-shadow: 0 0.375rem 0.375rem -0.25rem var(--ha-primary-color);
 }
 
-.ha-header div:last-child {
+.ha-header-home div:last-child {
   margin-left: auto;
 }
 .ha-logo {
@@ -88,7 +88,7 @@
 .ha-nav-icons i {
   font-size: 2rem;
 }
-.ha-nav-icons a {
+.ha-nav-icons i {
   color: var(--ha-icon-colr);
 }
 
@@ -214,6 +214,50 @@
   color: var(--ha-white-color);
 }
 
+.ha-logo-icons-wrapper {
+  display: flex;
+}
+.ha-logo-icons-wrapper div:last-child {
+  margin-left: auto;
+}
+
+.ha-header-responsive {
+  grid-area: header;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ha-light-background-color);
+  box-shadow: 0 0.375rem 0.375rem -0.25rem var(--ha-primary-color);
+}
+
+.ha-search-box-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--ha-white-color);
+  padding: 0.5rem;
+  border-radius: 2.5rem;
+}
+.ha-search-text-home {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+}
+.ha-search-text-home:focus {
+  outline: none;
+}
+.ha-search-button-home i {
+  font-size: 2rem;
+  color: var(--ha-primary-color);
+}
+
+.ha-product-heading {
+  color: var(--ha-primary-color);
+  font-size: 1.5rem;
+}
+.ha-link-style {
+  text-decoration: none;
+}
 /* Media Queries */
 
 @media only screen and (max-width: 800px) {

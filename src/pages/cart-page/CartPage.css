@@ -77,6 +77,11 @@ p {
   color: var(--ha-white-color);
   border: none;
 }
+
+.disabled-btn {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
 .move-btn {
   cursor: pointer;
   background-color: var(--ha-white-color);
