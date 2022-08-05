@@ -11,11 +11,11 @@ export default function ShippingMain({ item }) {
   const { state, dispatch } = useProduct();
   const [showShippingModal, setShowShippingModal] = useState(false);
 
-  const [displayAddrID, setDisplayAddrID] = useState();
+  const [displayAddrID, setDisplayAddrID] = useState(null);
   const navigate = useNavigate();
 
   console.log(displayAddrID, "display....");
-
+  console.log(state);
   let selectedAddress = state.address.find(
     (item) => item._id === displayAddrID
   );
@@ -114,12 +114,12 @@ export default function ShippingMain({ item }) {
 
             <button
               className={
-                state.cartList.length > 0
-                  ? "remove-btn price-btn"
-                  : "remove-btn price-btn disabled-btn"
+                state.cartList.length === 0 || !displayAddrID
+                  ? "remove-btn price-btn disabled-btn"
+                  : "remove-btn price-btn"
               }
               onClick={orderPlaceHandle}
-              disabled={state.cartList.length > 0 ? false : true}
+              disabled={state.cartList.length === 0 || !displayAddrID}
             >
               PLACE ORDER
             </button>

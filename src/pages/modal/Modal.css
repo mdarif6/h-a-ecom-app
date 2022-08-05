@@ -55,6 +55,7 @@
   font-size: 1.2rem;
   margin: 0.2rem 0.2rem 0 0;
   color: var(--ha-primary-color);
+  cursor: pointer;
 }
 
 .address-close {
@@ -89,4 +90,11 @@
 .address-and-btn-wrapper {
   background-color: white;
   margin-top: 1rem;
+}
+.blank-address-popup {
+  color: var(--ha-primary-color);
+  font-weight: bold;
+  padding: 0.5rem;
+  margin: 1rem;
+  text-align: center;
 }

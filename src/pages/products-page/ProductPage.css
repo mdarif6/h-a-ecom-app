@@ -3,7 +3,7 @@ body {
   margin: 0;
 }
 .ha-prod-content > * {
-  padding: 0.625rem;
+  padding: 0;
 }
 
 .ha-prod-content {
@@ -67,11 +67,16 @@ body {
 }
 
 /* Main */
-
+.burger-menu {
+  display: none;
+  color: var(--ha-primary-color);
+  font-size: 2rem;
+  padding: 0.5rem 0 0.5rem 0.5rem;
+}
 .h-main-heading {
   font-size: 1.2rem;
   font-weight: bold;
-  padding: 0 0 1.5rem 4rem;
+  padding: 1rem 0 1.5rem 4rem;
 }
 
 .ha-grid-main {
@@ -180,5 +185,19 @@ body {
   }
   .ha-header {
     display: none;
+  }
+  .burger-menu {
+    display: inline;
+  }
+
+  .ha-aside {
+    position: absolute;
+    left: 0;
+    top: 40px;
+    z-index: 1;
+    opacity: 0.9;
+  }
+  main {
+    margin: 1.2rem;
   }
 }

@@ -7,7 +7,7 @@ import Spinner from "../../common/Spinner";
 import { useProduct } from "../../product-context";
 import ProductCard from "./ProductCard";
 
-export default function Main() {
+export default function Main({ setShowSideBar }) {
   const { state, dispatch } = useProduct();
 
   useEffect(() => {
@@ -95,25 +95,31 @@ export default function Main() {
   const setByRange = sortingByRange(setByRating, state.sortByRange);
   const setByCategory = filterByCategory(setByRange, state.sortByCategory);
   const setBySearch = filterBySearch(setByCategory, state.searchQuery);
-
+  function showHideHandle() {
+    console.log("show side bar");
+    setShowSideBar((previous) => !previous);
+  }
   return (
     <>
       {state.loader ? (
         <Spinner />
       ) : (
-        <main>
-          <div class="h-main-heading">
-            Showing All Proucts
-            <small>(Showing {setByCategory.length} products)</small>
-          </div>
+        <>
+          <i class="fas fa-bars burger-menu" onClick={showHideHandle}></i>
+          <main>
+            <div class="h-main-heading">
+              Showing All Proucts
+              <small>(Showing {setByCategory.length} products)</small>
+            </div>
 
-          <div class="ha-grid-main">
-            {setBySearch &&
-              setBySearch.map((item) => (
-                <ProductCard key={item._id} item={item} />
-              ))}
-          </div>
-        </main>
+            <div class="ha-grid-main">
+              {setBySearch &&
+                setBySearch.map((item) => (
+                  <ProductCard key={item._id} item={item} />
+                ))}
+            </div>
+          </main>
+        </>
       )}
     </>
   );

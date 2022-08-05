@@ -20,7 +20,7 @@ export default function Main() {
 
       if (response.status === 200 || response.status === 201) {
         localStorage.setItem("authToken", response.data.encodedToken);
-        navigate("/products");
+
         dispatch({ type: "SET_AUTH", payload: true });
         dispatch({ type: "ADD_USERINFO", payload: response.data.createdUser });
       }

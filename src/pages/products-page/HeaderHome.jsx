@@ -20,6 +20,7 @@ export default function HeaderHome() {
             <img src={img1} alt="logo-image" />
           </Link>
         </div>
+
         <Link className="ha-link-style" to="/products">
           <div className="ha-product-heading ">PRODUCTS</div>
         </Link>

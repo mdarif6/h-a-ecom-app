@@ -30,26 +30,29 @@ export default function ShippingModal({
           >
             Close
           </button> */}
-          {state.address.map((adr) => {
-            // <div className="address-and-radio">
-            //   <input
-            //     className="address-radio"
-            //     name="address"
-            //     type="radio"
-            //     value={item._id}
-            //     onChange={(e) => setDisplayAddrID(e.target.value)}
-            //   />
-            //   <AddressCard adr={item} />;
-            // </div>
-            //line 33 par setDisplayAddrID jo pass kiya wo andaje se kiya but why
-            return (
-              <>
-                <AddressShipCard
-                  adr={adr}
-                  setDisplayAddrID={setDisplayAddrID}
-                />
 
-                {/* <div
+          {state.address.length > 0 ? (
+            <div>
+              {state.address.map((adr) => {
+                // <div className="address-and-radio">
+                //   <input
+                //     className="address-radio"
+                //     name="address"
+                //     type="radio"
+                //     value={item._id}
+                //     onChange={(e) => setDisplayAddrID(e.target.value)}
+                //   />
+                //   <AddressCard adr={item} />;
+                // </div>
+                //line 33 par setDisplayAddrID jo pass kiya wo andaje se kiya but why
+                return (
+                  <>
+                    <AddressShipCard
+                      adr={adr}
+                      setDisplayAddrID={setDisplayAddrID}
+                    />
+
+                    {/* <div
                 class="card card-dismiss card-for-modal shipping-radio"
                 key={adr._id}
               >
@@ -101,9 +104,18 @@ export default function ShippingModal({
               {showEditModal && (
                 <EditModal setShowModal={setShowEditModal} adr={adr} />
               )} */}
-              </>
-            );
-          })}
+                  </>
+                );
+              })}
+            </div>
+          ) : (
+            <div>
+              <p className="blank-address-popup">You did added any address</p>
+              <p className="blank-address-popup">
+                Please add your address first and come back to place order
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

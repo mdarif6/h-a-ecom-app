@@ -95,7 +95,37 @@ export default function ProductCard({ item }) {
     <div class="h-grid-product" key={item._id}>
       <img src={item.image} />
 
-      {state.wishList.some((p) => p._id === item._id) ? (
+      {false ? (
+        <>
+          {state.wishList.some((p) => p._id === item._id) ? (
+            <div class="h-product-icon h-product-icon-red">
+              <i
+                class="fas fa-heart"
+                // onClick={() =>
+                //   dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item })
+                // }
+                onClick={() => removeWishListHandler(item)}
+              ></i>
+            </div>
+          ) : (
+            <div className="h-product-icon">
+              <i
+                class="fas fa-heart"
+                // onClick={() => dispatch({ type: "ADD_TO_WISHLIST", payload: item })}
+                onClick={() => addToWishListHandler(item)}
+              ></i>
+            </div>
+          )}
+        </>
+      ) : (
+        <Link to="/login">
+          <div className="h-product-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+        </Link>
+      )}
+
+      {/* {state.wishList.some((p) => p._id === item._id) ? (
         <div class="h-product-icon h-product-icon-red">
           <i
             class="fas fa-heart"
@@ -113,7 +143,7 @@ export default function ProductCard({ item }) {
             onClick={() => addToWishListHandler(item)}
           ></i>
         </div>
-      )}
+      )} */}
 
       <div class="h-product-bottom">
         <p class="product-name">{item.companyName}</p>
