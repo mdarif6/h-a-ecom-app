@@ -17,6 +17,7 @@ import ShippingPage from "./pages/shipping-page/ShippingPage";
 import ShippingModal from "./pages/modal/ShippingModal";
 import OrderCard from "./pages/order-page/OrderCard";
 import SuccessPage from "./pages/success-page/SuccessPage";
+import ConfirmationModal from "./pages/modal/ConfirmationModal";
 
 function App() {
   const { state, dispatch } = useAuth();
@@ -57,6 +58,7 @@ function App() {
         <Route path="shipping" element={<ShippingPage />} />
         <Route path="/modal" element={<Modal />} />
         <Route path="/smodal" element={<ShippingModal />} />
+        <Route path="/confirmation" element={<ConfirmationModal />} />
         <Route path="/order" element={<OrderCard />} />
         <Route path="/order-success" element={<SuccessPage />} />
       </Routes>

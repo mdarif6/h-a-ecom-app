@@ -13,6 +13,13 @@ export default function AccountMain() {
   const { state: authState, dispatch: authDispatch } = useAuth();
   const [showModal, setShowModal] = useState(false);
   const [currentTab, setCurrentTab] = useState(0);
+  const [bgColor, setBgColor] = useState("#faeded");
+  const [textColor, setTextColor] = useState("black");
+
+  function highlightTab() {
+    setBgColor("#c91212");
+    setTextColor("white");
+  }
 
   function showAddressModal() {
     setShowModal(true);
@@ -47,11 +54,22 @@ export default function AccountMain() {
 
       <div className="ha-account-section">
         <div className="ha-account-title">
-          <ul className="ha-account-list" onClick={() => setCurrentTab(0)}>
+          <ul
+            className="ha-account-list"
+            onClick={() => setCurrentTab(0)}
+            style={{ backgroundColor: bgColor, color: textColor }}
+          >
             My Account
           </ul>
           <div className="blank-div"></div>
-          <ul className="ha-account-list" onClick={() => setCurrentTab(1)}>
+          <ul
+            className="ha-account-list"
+            onClick={() => {
+              setCurrentTab(1);
+              highlightTab();
+            }}
+            style={{ backgroundColor: `${bgColor}`, color: `${textColor}` }}
+          >
             Orders
           </ul>
           <div className="blank-div"></div>

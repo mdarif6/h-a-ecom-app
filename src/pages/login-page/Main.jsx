@@ -7,7 +7,8 @@ export default function Main() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { dispatch } = useAuth();
+  const { state, dispatch } = useAuth();
+  console.log(state.userInfo);
 
   async function submitHandler(e) {
     e.preventDefault();
@@ -85,7 +86,16 @@ export default function Main() {
               </div>
             </div>
             <a href="#">
-              <button className="btn btn-primary">Login</button>
+              <button
+                className={
+                  email === "" || password === ""
+                    ? "btn btn-primary disabled-btn"
+                    : "btn btn-primary"
+                }
+                disabled={email === "" || password === ""}
+              >
+                Login
+              </button>
             </a>
           </form>
           <a href="#">

@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useProduct } from "../../product-context";
+import ConfirmationModal from "../modal/ConfirmationModal";
 import EditModal from "../modal/EditModal";
 
 export default function AddressCard({ adr }) {
   const { state, dispatch } = useProduct();
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   async function deleteAddressHandle() {
     let token = localStorage.getItem("authToken");
@@ -53,7 +55,8 @@ export default function AddressCard({ adr }) {
             </button>
             <button
               class="btn outline-primary btn-delete"
-              onClick={deleteAddressHandle}
+              onClick={() => setShowConfirmationModal(true)}
+              // onClick={deleteAddressHandle}
             >
               Delete
             </button>
@@ -62,6 +65,12 @@ export default function AddressCard({ adr }) {
         </div>
       </div>
       {showEditModal && <EditModal setShowModal={setShowEditModal} adr={adr} />}
+      {showConfirmationModal && (
+        <ConfirmationModal
+          setShowConfirmationModal={setShowConfirmationModal}
+          adr={adr}
+        />
+      )}
     </>
   );
 }

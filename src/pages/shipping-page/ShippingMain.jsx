@@ -108,9 +108,7 @@ export default function ShippingMain({ item }) {
             </div>
 
             <div className="blank-div"></div>
-            <div className="price-comment">
-              You will save Rs1999 on this order
-            </div>
+            <div className="price-comment">You will save 55% on this order</div>
 
             <button
               className={

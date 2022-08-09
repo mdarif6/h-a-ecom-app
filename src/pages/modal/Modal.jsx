@@ -66,22 +66,25 @@ export default function Modal({ setShowModal }) {
                 className="ha-address-input"
                 type="text"
                 placeholder="Name"
+                required
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div>
               <input
                 className="ha-address-input"
-                type="text"
+                type="number"
                 placeholder="Mobile"
+                required
                 onChange={(e) => setMobile(e.target.value)}
               />
             </div>
             <div>
               <input
                 className="ha-address-input"
-                type="text"
+                type="number"
                 placeholder="Pin Code"
+                required
                 onChange={(e) => setPincode(e.target.value)}
               />
             </div>
@@ -90,6 +93,7 @@ export default function Modal({ setShowModal }) {
                 className="ha-address-input"
                 type="text"
                 placeholder="Locality/Area/Street"
+                required
                 onChange={(e) => setArea(e.target.value)}
               />
             </div>
@@ -98,6 +102,7 @@ export default function Modal({ setShowModal }) {
                 className="ha-address-input"
                 type="text"
                 placeholder="Flat number/ Building Name"
+                required
                 onChange={(e) => setFlatno(e.target.value)}
               />
             </div>
@@ -106,6 +111,7 @@ export default function Modal({ setShowModal }) {
                 className="ha-address-input"
                 type="text"
                 placeholder="Landmark"
+                required
                 onChange={(e) => setLandmark(e.target.value)}
               />
             </div>
@@ -114,6 +120,7 @@ export default function Modal({ setShowModal }) {
                 className="ha-address-input"
                 type="text"
                 placeholder="District/City"
+                required
                 onChange={(e) => setDistrict(e.target.value)}
               />
             </div>
@@ -122,6 +129,7 @@ export default function Modal({ setShowModal }) {
                 className="ha-address-input"
                 type="text"
                 placeholder="State"
+                required
                 onChange={(e) => setState(e.target.value)}
               />
             </div>

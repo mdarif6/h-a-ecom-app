@@ -37,7 +37,7 @@
 .ha-shipping-modal-wrapper {
   position: fixed;
   left: 0;
-  top: 0;
+  top: 13%;
   right: 0;
   bottom: 0;
   background-color: rgba(218, 212, 212, 0.5);
@@ -97,4 +97,41 @@
   padding: 0.5rem;
   margin: 1rem;
   text-align: center;
+}
+
+/* confirmation modal */
+.ha-confirmation-modal-position {
+  position: "fixed";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(218, 212, 212, 0.5);
+}
+.ha-confirmation-modal-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 50px;
+  z-index: 99;
+}
+.btn-primary-cancel {
+  background-color: var(--ha-primary-color);
+}
+.outline-primary-confirm {
+  background-color: white;
+  color: var(--ha-primary-color);
+  border-color: var(--ha-primary-color);
+  border: 1px solid var(--ha-primary-color);
+}
+
+.outline-primary-confirm:hover {
+  background-color: var(--ha-primary-color);
+  color: white;
 }

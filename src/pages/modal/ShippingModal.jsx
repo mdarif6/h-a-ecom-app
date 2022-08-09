@@ -110,7 +110,9 @@ export default function ShippingModal({
             </div>
           ) : (
             <div>
-              <p className="blank-address-popup">You did added any address</p>
+              <p className="blank-address-popup">
+                You did not added any address
+              </p>
               <p className="blank-address-popup">
                 Please add your address first and come back to place order
               </p>
