@@ -92,15 +92,15 @@ export default function ProductCard({ item }) {
     authDispatch({ type: "SET_AUTH", payload: false });
   }
   return (
-    <div class="h-grid-product" key={item._id}>
+    <div className="h-grid-product" key={item._id}>
       <img src={item.image} />
 
-      {false ? (
+      {authState.isAuthenticated ? (
         <>
           {state.wishList.some((p) => p._id === item._id) ? (
-            <div class="h-product-icon h-product-icon-red">
+            <div className="h-product-icon h-product-icon-red">
               <i
-                class="fas fa-heart"
+                className="fas fa-heart"
                 // onClick={() =>
                 //   dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item })
                 // }
@@ -110,7 +110,7 @@ export default function ProductCard({ item }) {
           ) : (
             <div className="h-product-icon">
               <i
-                class="fas fa-heart"
+                className="fas fa-heart"
                 // onClick={() => dispatch({ type: "ADD_TO_WISHLIST", payload: item })}
                 onClick={() => addToWishListHandler(item)}
               ></i>
@@ -120,56 +120,44 @@ export default function ProductCard({ item }) {
       ) : (
         <Link to="/login">
           <div className="h-product-icon">
-            <i class="fas fa-heart"></i>
+            <i className="fas fa-heart"></i>
           </div>
         </Link>
       )}
 
-      {/* {state.wishList.some((p) => p._id === item._id) ? (
-        <div class="h-product-icon h-product-icon-red">
-          <i
-            class="fas fa-heart"
-            // onClick={() =>
-            //   dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item })
-            // }
-            onClick={() => removeWishListHandler(item)}
-          ></i>
-        </div>
-      ) : (
-        <div className="h-product-icon">
-          <i
-            class="fas fa-heart"
-            // onClick={() => dispatch({ type: "ADD_TO_WISHLIST", payload: item })}
-            onClick={() => addToWishListHandler(item)}
-          ></i>
-        </div>
-      )} */}
-
-      <div class="h-product-bottom">
-        <p class="product-name">{item.companyName}</p>
-        <p class="product-desc">{item.design}</p>
-        <p class="product-desc">
+      <div className="h-product-bottom">
+        <p className="product-name">{item.companyName}</p>
+        <p className="product-desc">{item.design}</p>
+        <p className="product-desc">
           Offer Price: <small>₹ {item.price}</small>
         </p>
 
-        {state.cartList.some((p) => p._id === item._id) ? (
-          <button
-            class="h-product-button"
-            // onClick={() =>
-            //   dispatch({ type: "REMOVE_FROM_CART", payload: item })
-            // }
-            onClick={() => removeCartHandler(item)}
-          >
-            Remove From Cart
-          </button>
+        {authState.isAuthenticated ? (
+          <>
+            {state.cartList.some((p) => p._id === item._id) ? (
+              <button
+                className="h-product-button"
+                // onClick={() =>
+                //   dispatch({ type: "REMOVE_FROM_CART", payload: item })
+                // }
+                onClick={() => removeCartHandler(item)}
+              >
+                Remove From Cart
+              </button>
+            ) : (
+              <button
+                className="h-product-button"
+                onClick={() => addToCartHandler(item)}
+                // onClick={() => dispatch({ type: "ADD_TO_CART", payload: item })}
+              >
+                Add to Cart
+              </button>
+            )}
+          </>
         ) : (
-          <button
-            class="h-product-button"
-            onClick={() => addToCartHandler(item)}
-            // onClick={() => dispatch({ type: "ADD_TO_CART", payload: item })}
-          >
-            Add to Cart
-          </button>
+          <Link to="/login">
+            <button className="h-product-button">Add to Cart</button>
+          </Link>
         )}
       </div>
     </div>

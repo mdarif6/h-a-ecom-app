@@ -42,7 +42,7 @@ export default function EditModal({ setShowModal, adr }) {
           },
         }
       );
-      console.log(response, "edit ka response");
+
       if (response.status === 200) {
         dispatch({ type: "ADD_ADDRESS", payload: response.data.address });
         setShowModal(false);
@@ -59,7 +59,7 @@ export default function EditModal({ setShowModal, adr }) {
           <div className="ha-address-form">
             <div className="ha-addheading-and-icon">
               <h3>Add new address</h3>
-              <i class="fas fa-times" onClick={modalCloseHandle}></i>
+              <i className="fas fa-times" onClick={modalCloseHandle}></i>
             </div>
             <div>
               <input

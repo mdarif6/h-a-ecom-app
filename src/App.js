@@ -51,7 +51,14 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path="/login" element={<LoginPage />} />
+        {state.isAuthenticated ? (
+          <Route path="/products" element={<ProductsPage />} />
+        ) : (
+          <>
+            <Route path="/login" element={<LoginPage />} />
+          </>
+        )}
+
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/mockman" element={<Mockman />} />
         <Route path="/my-account" element={<AccountPage />} />

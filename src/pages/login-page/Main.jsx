@@ -8,7 +8,6 @@ export default function Main() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { state, dispatch } = useAuth();
-  console.log(state.userInfo);
 
   async function submitHandler(e) {
     e.preventDefault();
@@ -79,7 +78,7 @@ export default function Main() {
                   id="consent"
                   value="remember"
                 />
-                <label for="consent">Remember me</label>
+                <label htmlFor="consent">Remember me</label>
               </div>
               <div>
                 <a href="#">Forgot Your Password ?</a>

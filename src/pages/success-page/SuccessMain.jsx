@@ -8,7 +8,7 @@ export default function SuccessMain() {
   const navigate = useNavigate();
 
   const getUserName = state.orders.map((item) => item.order.address.name);
-  console.log(getUserName);
+
   return (
     <div className="order-success-wrapper">
       <div className="order-success-child">

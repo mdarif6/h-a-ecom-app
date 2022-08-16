@@ -40,8 +40,8 @@ export default function HeaderHome() {
               {authState.isAuthenticated ? (
                 <div className="badge-icon">
                   <div className="badge-on-icon">
-                    <Link to="my-account">
-                      <i class="fas fa-user-circle"></i>
+                    <Link to="/my-account">
+                      <i className="fas fa-user-circle"></i>
                     </Link>
                   </div>
                 </div>

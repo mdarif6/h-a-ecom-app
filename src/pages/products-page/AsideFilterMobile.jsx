@@ -1,7 +1,8 @@
+import React from "react";
 import { useProduct } from "../../product-context";
 import { useEffect } from "react";
 import FilterCategories from "./FilterCategories";
-export default function AsideFilter() {
+export default function AsideFilterMobile() {
   const { state, dispatch } = useProduct();
 
   useEffect(() => {
@@ -13,7 +14,7 @@ export default function AsideFilter() {
   }, []);
 
   return (
-    <aside className="ha-aside">
+    <aside className="ha-aside-smallscreen">
       <div className="aside-top-heading">
         <h3>Filter</h3>
         <h3

@@ -14,13 +14,10 @@ export default function ShippingMain({ item }) {
   const [displayAddrID, setDisplayAddrID] = useState(null);
   const navigate = useNavigate();
 
-  console.log(displayAddrID, "display....");
-  console.log(state);
   let selectedAddress = state.address.find(
     (item) => item._id === displayAddrID
   );
 
-  console.log(selectedAddress, "addddddddddewwsre");
   function getTotalPrice(list) {
     return list.reduce((acc, current) => {
       return acc + Number(current.price) * Number(current.qty);
@@ -44,8 +41,6 @@ export default function ShippingMain({ item }) {
           },
         }
       );
-
-      console.log(response, "orders ka response");
 
       if (response.status === 201) {
         dispatch({ type: "ADD_ORDERS", payload: response.data.orders });

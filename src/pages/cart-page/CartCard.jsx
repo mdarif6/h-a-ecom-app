@@ -79,7 +79,7 @@ export default function CartCard({ item }) {
               className="fas fa-minus-circle"
               onClick={() => {
                 if (item.qty === 1) {
-                  dispatch({ type: "REMOVE_FROM_CART", payload: item });
+                  removeCartHandler(item);
                 } else {
                   dispatch({ type: "DECREMENT", payload: item._id });
                 }

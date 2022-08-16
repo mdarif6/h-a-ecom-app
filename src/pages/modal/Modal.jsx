@@ -59,7 +59,7 @@ export default function Modal({ setShowModal }) {
           <div className="ha-address-form">
             <div className="ha-addheading-and-icon">
               <h3>Add new address</h3>
-              <i class="fas fa-times" onClick={modalCloseHandle}></i>
+              <i className="fas fa-times" onClick={modalCloseHandle}></i>
             </div>
             <div>
               <input

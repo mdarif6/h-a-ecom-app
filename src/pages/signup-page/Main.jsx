@@ -82,7 +82,7 @@ export default function Main() {
                   id="consent"
                   value="remember"
                 />
-                <label for="consent">I accept all Terms & Conditions</label>
+                <label htmlFor="consent">I accept all Terms & Conditions</label>
               </div>
             </div>
             <button

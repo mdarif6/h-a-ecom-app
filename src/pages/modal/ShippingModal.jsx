@@ -19,7 +19,7 @@ export default function ShippingModal({
           <div className="address-close">
             <div></div>
             <i
-              class="fas fa-times shipping-modal-close"
+              className="fas fa-times shipping-modal-close"
               onClick={() => setShowShippingModal(false)}
             ></i>
           </div>

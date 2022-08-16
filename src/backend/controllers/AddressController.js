@@ -163,7 +163,19 @@ export const updateAddressHandler = function (schema, request) {
     }).address;
 
     const {
-      address: { name, street, city, state, zipCode, mobile },
+      address: {
+        name,
+        street,
+        city,
+        state,
+        zipCode,
+        mobile,
+        flatno,
+        landmark,
+        area,
+        district,
+        pincode,
+      },
     } = JSON.parse(request.requestBody);
 
     userAddress.forEach((address) => {
@@ -174,6 +186,11 @@ export const updateAddressHandler = function (schema, request) {
         address.state = state;
         address.zipCode = zipCode;
         address.mobile = mobile;
+        address.flatno = flatno;
+        address.landmark = landmark;
+        address.area = area;
+        address.district = district;
+        address.pincode = pincode;
         address.updatedAt = formatDate();
       }
     });

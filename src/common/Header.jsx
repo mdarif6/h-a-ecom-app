@@ -41,7 +41,7 @@ export default function Header() {
                 <div className="badge-icon">
                   <div className="badge-on-icon">
                     <Link to="/my-account">
-                      <i class="fas fa-user-circle"></i>
+                      <i className="fas fa-user-circle"></i>
                     </Link>
                   </div>
                 </div>

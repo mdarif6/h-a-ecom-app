@@ -96,7 +96,6 @@ export default function Main({ setShowSideBar }) {
   const setByCategory = filterByCategory(setByRange, state.sortByCategory);
   const setBySearch = filterBySearch(setByCategory, state.searchQuery);
   function showHideHandle() {
-    console.log("show side bar");
     setShowSideBar((previous) => !previous);
   }
   return (
@@ -105,14 +104,14 @@ export default function Main({ setShowSideBar }) {
         <Spinner />
       ) : (
         <>
-          <i class="fas fa-bars burger-menu" onClick={showHideHandle}></i>
+          <i className="fas fa-bars burger-menu" onClick={showHideHandle}></i>
           <main>
-            <div class="h-main-heading">
+            <div className="h-main-heading">
               Showing All Proucts
               <small>(Showing {setByCategory.length} products)</small>
             </div>
 
-            <div class="ha-grid-main">
+            <div className="ha-grid-main">
               {setBySearch &&
                 setBySearch.map((item) => (
                   <ProductCard key={item._id} item={item} />
