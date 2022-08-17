@@ -149,6 +149,7 @@ body {
 }
 
 .h-product-button {
+  width: 100%;
   padding: 0.5rem 0 0.5rem 0;
   font-size: 1rem;
   border: none;
