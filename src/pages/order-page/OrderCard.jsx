@@ -16,23 +16,6 @@ export default function OrderCard() {
     }, 0);
   }
 
-  // async function deleteAddressHandle() {
-  //   let token = localStorage.getItem("authToken");
-  //   try {
-  //     const response = await axios.delete(`/api/user/address/${adr._id}`, {
-  //       headers: {
-  //         authorization: token,
-  //       },
-  //     });
-
-  //     if (response.status === 200) {
-  //       dispatch({ type: "ADD_ADDRESS", payload: response.data.address });
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   useEffect(() => {
     async function getOrderData() {
       let token = localStorage.getItem("authToken");
@@ -42,8 +25,6 @@ export default function OrderCard() {
             authorization: token,
           },
         });
-
-        console.log(response, "ordere get api ka response");
 
         if (response.status === 200) {
           dispatch({ type: "ADD_ORDERS", payload: response.data.orders });
@@ -57,8 +38,8 @@ export default function OrderCard() {
 
   return (
     <>
-      <div class="card-for-order">
-        <div class="card-desc order-cards">
+      <div className="card-for-order">
+        <div className="card-desc order-cards">
           <div className="card-desc-top-details">
             <p className="order-confirmation">Order Confirmed</p>
             <p className="order-total-price">

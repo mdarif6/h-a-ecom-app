@@ -11,16 +11,13 @@ export default function ShippingMain({ item }) {
   const { state, dispatch } = useProduct();
   const [showShippingModal, setShowShippingModal] = useState(false);
 
-  const [displayAddrID, setDisplayAddrID] = useState();
+  const [displayAddrID, setDisplayAddrID] = useState(null);
   const navigate = useNavigate();
-
-  console.log(displayAddrID, "display....");
 
   let selectedAddress = state.address.find(
     (item) => item._id === displayAddrID
   );
 
-  console.log(selectedAddress, "addddddddddewwsre");
   function getTotalPrice(list) {
     return list.reduce((acc, current) => {
       return acc + Number(current.price) * Number(current.qty);
@@ -44,8 +41,6 @@ export default function ShippingMain({ item }) {
           },
         }
       );
-
-      console.log(response, "orders ka response");
 
       if (response.status === 201) {
         dispatch({ type: "ADD_ORDERS", payload: response.data.orders });
@@ -108,18 +103,16 @@ export default function ShippingMain({ item }) {
             </div>
 
             <div className="blank-div"></div>
-            <div className="price-comment">
-              You will save Rs1999 on this order
-            </div>
+            <div className="price-comment">You will save 55% on this order</div>
 
             <button
               className={
-                state.cartList.length > 0
-                  ? "remove-btn price-btn"
-                  : "remove-btn price-btn disabled-btn"
+                state.cartList.length === 0 || !displayAddrID
+                  ? "remove-btn price-btn disabled-btn"
+                  : "remove-btn price-btn"
               }
               onClick={orderPlaceHandle}
-              disabled={state.cartList.length > 0 ? false : true}
+              disabled={state.cartList.length === 0 || !displayAddrID}
             >
               PLACE ORDER
             </button>

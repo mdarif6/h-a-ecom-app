@@ -3,7 +3,7 @@ body {
   margin: 0;
 }
 .ha-prod-content > * {
-  padding: 0.625rem;
+  padding: 0;
 }
 
 .ha-prod-content {
@@ -42,6 +42,16 @@ body {
   background-color: var(--ha-light-background-color);
 }
 
+.ha-aside-smallscreen > * {
+  margin: 1.3rem;
+}
+.ha-aside-smallscreen {
+  grid-area: aside;
+  background-color: var(--ha-light-background-color);
+}
+.ha-aside-smallscreen {
+  display: none;
+}
 .aside-top-heading {
   line-height: 0;
   display: flex;
@@ -67,11 +77,17 @@ body {
 }
 
 /* Main */
-
+.burger-menu {
+  display: none;
+  color: var(--ha-primary-color);
+  font-size: 2rem;
+  padding: 0.5rem 0 0.5rem 0.5rem;
+  cursor: pointer;
+}
 .h-main-heading {
   font-size: 1.2rem;
   font-weight: bold;
-  padding: 0 0 1.5rem 4rem;
+  padding: 1rem 0 1.5rem 4rem;
 }
 
 .ha-grid-main {
@@ -133,6 +149,7 @@ body {
 }
 
 .h-product-button {
+  width: 100%;
   padding: 0.5rem 0 0.5rem 0;
   font-size: 1rem;
   border: none;
@@ -180,5 +197,28 @@ body {
   }
   .ha-header {
     display: none;
+  }
+  .burger-menu {
+    display: inline;
+  }
+
+  .ha-aside {
+    position: absolute;
+    left: 0;
+    top: 40px;
+    z-index: 1;
+    opacity: 0.9;
+    display: none;
+  }
+  .ha-aside-smallscreen {
+    display: inline;
+    position: absolute;
+    left: 0;
+    top: 40px;
+    z-index: 1;
+    opacity: 0.9;
+  }
+  main {
+    margin: 1.2rem;
   }
 }

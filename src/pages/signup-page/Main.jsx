@@ -9,6 +9,7 @@ export default function Main() {
     email: "",
     password: "",
   });
+
   const { dispatch } = useAuth();
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ export default function Main() {
 
       if (response.status === 200 || response.status === 201) {
         localStorage.setItem("authToken", response.data.encodedToken);
-        navigate("/products");
+
         dispatch({ type: "SET_AUTH", payload: true });
         dispatch({ type: "ADD_USERINFO", payload: response.data.createdUser });
       }
@@ -81,10 +82,25 @@ export default function Main() {
                   id="consent"
                   value="remember"
                 />
-                <label for="consent">I accept all Terms & Conditions</label>
+                <label htmlFor="consent">I accept all Terms & Conditions</label>
               </div>
             </div>
-            <button className="btn btn-primary">Create New Account</button>
+            <button
+              className={
+                register.name === "" ||
+                register.email === "" ||
+                register.password === ""
+                  ? "btn btn-primary disabled-btn"
+                  : "btn btn-primary"
+              }
+              disabled={
+                register.name === "" ||
+                register.email === "" ||
+                register.password === ""
+              }
+            >
+              Create New Account
+            </button>
             <div className="login-bottom-text">
               <Link to="/login">
                 Already have an account

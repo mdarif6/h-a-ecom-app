@@ -3,15 +3,17 @@
   padding: 2rem 0 1rem 0;
 }
 .ha-account-section {
-  border: 1px solid red;
+  min-height: 100vh;
+
   margin: 1rem;
-  /* display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)); */
+
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-
+.ha-absent-heading {
+  color: var(--ha-primary-color);
+}
 .ha-account-list {
   cursor: pointer;
   min-width: 300px;
@@ -41,9 +43,7 @@
 }
 .ha-address-input {
   width: 100%;
-  /* border-top: none;
-  border-right: none;
-  border-left: none; */
+
   padding-top: 3rem;
   outline: 0;
 

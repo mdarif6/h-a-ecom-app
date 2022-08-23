@@ -22,7 +22,7 @@ export default function FilterCategories({ category }) {
           }
         }}
       />
-      <label for={category._id}>{category.categoryName}</label>
+      <label htmlFor={category._id}>{category.categoryName}</label>
     </div>
   );
 }

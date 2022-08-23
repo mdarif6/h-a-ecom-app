@@ -17,6 +17,7 @@ import ShippingPage from "./pages/shipping-page/ShippingPage";
 import ShippingModal from "./pages/modal/ShippingModal";
 import OrderCard from "./pages/order-page/OrderCard";
 import SuccessPage from "./pages/success-page/SuccessPage";
+import ConfirmationModal from "./pages/modal/ConfirmationModal";
 
 function App() {
   const { state, dispatch } = useAuth();
@@ -50,13 +51,21 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path="/login" element={<LoginPage />} />
+        {state.isAuthenticated ? (
+          <Route path="/products" element={<ProductsPage />} />
+        ) : (
+          <>
+            <Route path="/login" element={<LoginPage />} />
+          </>
+        )}
+
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/mockman" element={<Mockman />} />
         <Route path="/my-account" element={<AccountPage />} />
         <Route path="shipping" element={<ShippingPage />} />
         <Route path="/modal" element={<Modal />} />
         <Route path="/smodal" element={<ShippingModal />} />
+        <Route path="/confirmation" element={<ConfirmationModal />} />
         <Route path="/order" element={<OrderCard />} />
         <Route path="/order-success" element={<SuccessPage />} />
       </Routes>

@@ -20,6 +20,7 @@ export default function HeaderHome() {
             <img src={img1} alt="logo-image" />
           </Link>
         </div>
+
         <Link className="ha-link-style" to="/products">
           <div className="ha-product-heading ">PRODUCTS</div>
         </Link>
@@ -49,7 +50,7 @@ export default function HeaderHome() {
                 <div className="badge-icon">
                   <div className="badge-on-icon">
                     <Link to="/my-account">
-                      <i class="fas fa-user-circle"></i>
+                      <i className="fas fa-user-circle"></i>
                     </Link>
                   </div>
                 </div>
@@ -99,8 +100,8 @@ export default function HeaderHome() {
                   {authState.isAuthenticated ? (
                     <div className="badge-icon">
                       <div className="badge-on-icon">
-                        <Link to="my-account">
-                          <i class="fas fa-user-circle"></i>
+                        <Link to="/my-account">
+                          <i className="fas fa-user-circle"></i>
                         </Link>
                       </div>
                     </div>

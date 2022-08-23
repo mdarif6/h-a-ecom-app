@@ -92,33 +92,26 @@ export default function WishListCard({ item }) {
       <div className="h-product-icon wish-listed">
         <i
           className="fas fa-heart"
-          // onClick={() =>
-          //   dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item })
-          // }
           onClick={() => removeWishListHandler(item)}
         ></i>
       </div>
 
       <div className="h-product-bottom">
-        <p class="product-name">{item.companyName}</p>
-        <p class="product-desc">{item.design}</p>
-        <p class="product-desc">
+        <p className="product-name">{item.companyName}</p>
+        <p className="product-desc">{item.design}</p>
+        <p className="product-desc">
           Offer Price: <small>₹ {item.price}</small>
         </p>
         {state.cartList.some((p) => p._id === item._id) ? (
           <button
-            class="h-product-button"
-            // onClick={() =>
-            //   dispatch({ type: "REMOVE_FROM_CART", payload: item })
-            // }
+            className="h-product-button"
             onClick={() => removeCartHandler(item)}
           >
             Remove From Cart
           </button>
         ) : (
           <button
-            class="h-product-button"
-            // onClick={() => dispatch({ type: "ADD_TO_CART", payload: item })}
+            className="h-product-button"
             onClick={() => addToCartHandler(item)}
           >
             Add to Cart

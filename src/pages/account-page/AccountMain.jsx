@@ -13,6 +13,13 @@ export default function AccountMain() {
   const { state: authState, dispatch: authDispatch } = useAuth();
   const [showModal, setShowModal] = useState(false);
   const [currentTab, setCurrentTab] = useState(0);
+  const [bgColor, setBgColor] = useState("#faeded");
+  const [textColor, setTextColor] = useState("black");
+
+  function highlightTab() {
+    setBgColor("#c91212");
+    setTextColor("white");
+  }
 
   function showAddressModal() {
     setShowModal(true);
@@ -47,19 +54,63 @@ export default function AccountMain() {
 
       <div className="ha-account-section">
         <div className="ha-account-title">
-          <ul className="ha-account-list" onClick={() => setCurrentTab(0)}>
+          <ul
+            className="ha-account-list"
+            onClick={() => {
+              setCurrentTab(0);
+              highlightTab();
+            }}
+            style={
+              currentTab === 0
+                ? { backgroundColor: bgColor, color: textColor }
+                : {}
+            }
+          >
             My Account
           </ul>
           <div className="blank-div"></div>
-          <ul className="ha-account-list" onClick={() => setCurrentTab(1)}>
+          <ul
+            className="ha-account-list"
+            onClick={() => {
+              setCurrentTab(1);
+              highlightTab();
+            }}
+            style={
+              currentTab === 1
+                ? { backgroundColor: bgColor, color: textColor }
+                : {}
+            }
+          >
             Orders
           </ul>
           <div className="blank-div"></div>
-          <ul className="ha-account-list" onClick={() => setCurrentTab(2)}>
+          <ul
+            className="ha-account-list"
+            onClick={() => {
+              setCurrentTab(2);
+              highlightTab();
+            }}
+            style={
+              currentTab === 2
+                ? { backgroundColor: bgColor, color: textColor }
+                : {}
+            }
+          >
             Address
           </ul>
           <div className="blank-div"></div>
-          <ul className="ha-account-list" onClick={() => setCurrentTab(3)}>
+          <ul
+            className="ha-account-list"
+            onClick={() => {
+              setCurrentTab(3);
+              highlightTab();
+            }}
+            style={
+              currentTab === 3
+                ? { backgroundColor: bgColor, color: textColor }
+                : {}
+            }
+          >
             Settings
           </ul>
         </div>
@@ -79,7 +130,11 @@ export default function AccountMain() {
           <div className="ha-account-details">
             <div className="ha-order-heading">My Orders</div>
 
-            {state.orders.length > 0 ? <OrderCard /> : <h3>No Order</h3>}
+            {state.orders.length > 0 ? (
+              <OrderCard />
+            ) : (
+              <h3 className="ha-absent-heading">No order available till now</h3>
+            )}
           </div>
         )}
 
@@ -113,82 +168,6 @@ export default function AccountMain() {
             )}
           </div>
         )}
-
-        {/* <div className="ha-account-details">
-            <form onSubmit={saveClickHandler}>
-              <div className="ha-address-form">
-                <div className="ha-addheading-and-icon">
-                  <h3>Add new address</h3>
-                  <i class="fas fa-times"></i>
-                </div>
-                <div>
-                  <input
-                    className="ha-address-input"
-                    type="text"
-                    placeholder="Name"
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <input
-                    className="ha-address-input"
-                    type="text"
-                    placeholder="Mobile"
-                    onChange={(e) => setMobile(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <input
-                    className="ha-address-input"
-                    type="text"
-                    placeholder="Pin Code"
-                    onChange={(e) => setPincode(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <input
-                    className="ha-address-input"
-                    type="text"
-                    placeholder="Locality/Area/Street"
-                    onChange={(e) => setArea(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <input
-                    className="ha-address-input"
-                    type="text"
-                    placeholder="Flat number/ Building Name"
-                    onChange={(e) => setFlatno(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <input
-                    className="ha-address-input"
-                    type="text"
-                    placeholder="Landmark"
-                    onChange={(e) => setLandmark(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <input
-                    className="ha-address-input"
-                    type="text"
-                    placeholder="District/City"
-                    onChange={(e) => setDistrict(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <input
-                    className="ha-address-input"
-                    type="text"
-                    placeholder="State"
-                    onChange={(e) => setState(e.target.value)}
-                  />
-                </div>
-              </div>
-              <button>Save</button>
-            </form>
-          </div> */}
       </div>
       {showModal && <Modal setShowModal={setShowModal} />}
     </div>
