@@ -143,7 +143,6 @@ export default function EditModal({ setShowModal, adr }) {
             </div>
           </div>
           <div className="ha-address-bottom-btns">
-            {/* <button className="btn outline-primary btn-cancel">Cancel</button> */}
             <button className="btn btn-primary btn-save">Save</button>
           </div>
         </form>

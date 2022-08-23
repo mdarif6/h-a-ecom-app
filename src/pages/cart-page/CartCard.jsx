@@ -98,9 +98,6 @@ export default function CartCard({ item }) {
         <div className="image-cart-btn">
           <button
             className="remove-btn"
-            // onClick={() =>
-            //   dispatch({ type: "REMOVE_FROM_CART", payload: item })
-            // }
             onClick={() => removeCartHandler(item)}
           >
             Remove From Cart
@@ -109,9 +106,6 @@ export default function CartCard({ item }) {
           {state.wishList.some((p) => p._id === item._id) ? (
             <button
               className="move-btn"
-              // onClick={() => {
-              //   dispatch({ type: "REMOVE_FROM_CART", payload: item });
-              // }}
               onClick={() => removeCartHandler(item)}
             >
               Move to Wishlist
@@ -119,10 +113,6 @@ export default function CartCard({ item }) {
           ) : (
             <button
               className="move-btn"
-              // onClick={() => {
-              //   dispatch({ type: "REMOVE_FROM_CART", payload: item });
-              //   dispatch({ type: "ADD_TO_WISHLIST", payload: item });
-              // }}
               onClick={() => {
                 addToWishListHandler(item);
                 removeCartHandler(item);

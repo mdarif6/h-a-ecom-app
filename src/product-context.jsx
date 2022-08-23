@@ -97,14 +97,6 @@ function productReducer(state, action) {
       return { ...state, sortByPrice: action.payload };
 
     case "SEARCH_ENTER":
-      // return {
-      //   ...state,
-      //   searchQuery: [
-      //     [...state.searchQuery],
-      //     { name: action.payload.name, value: action.payload.value },
-      //   ],
-      // };
-
       return {
         ...state,
         searchQuery: action.payload,
@@ -141,13 +133,6 @@ function productReducer(state, action) {
 
     case "ADD_SELECTED_ADDR":
       return { ...state, selectedAdr: action.payload };
-
-    // case "DELETE_ADDRESS":
-    //   const updatedAddress = state.address.filter((item) => {
-    //     item._id !== action.payload;
-    //   });
-
-    // return { ...state, address: updatedAddress };
 
     default:
       return state;

@@ -16,23 +16,6 @@ export default function OrderCard() {
     }, 0);
   }
 
-  // async function deleteAddressHandle() {
-  //   let token = localStorage.getItem("authToken");
-  //   try {
-  //     const response = await axios.delete(`/api/user/address/${adr._id}`, {
-  //       headers: {
-  //         authorization: token,
-  //       },
-  //     });
-
-  //     if (response.status === 200) {
-  //       dispatch({ type: "ADD_ADDRESS", payload: response.data.address });
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   useEffect(() => {
     async function getOrderData() {
       let token = localStorage.getItem("authToken");

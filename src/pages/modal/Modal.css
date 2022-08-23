@@ -6,11 +6,7 @@
   bottom: 0;
   background-color: rgba(218, 212, 212, 0.5);
 }
-/* .ha-modal-wrapper {
-  height: 100vh;
-  position: relative;
-  background-color: rgba(236, 99, 99, 0.5);
-} */
+
 .ha-modal-form {
   position: absolute;
   top: 50%;
@@ -134,4 +130,11 @@
 .outline-primary-confirm:hover {
   background-color: var(--ha-primary-color);
   color: white;
+}
+.gotoaddress {
+  text-align: center;
+}
+.btn-gotoaddress {
+  background-color: var(--ha-primary-color);
+  cursor: pointer;
 }

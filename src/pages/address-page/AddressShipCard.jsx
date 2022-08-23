@@ -7,23 +7,6 @@ export default function AddressShipCard({ adr, setDisplayAddrID }) {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
-  // async function deleteAddressHandle(adr) {
-  //   let token = localStorage.getItem("authToken");
-  //   try {
-  //     const response = await axios.delete(`/api/user/address/${adr._id}`, {
-  //       headers: {
-  //         authorization: token,
-  //       },
-  //     });
-
-  //     if (response.status === 200) {
-  //       dispatch({ type: "ADD_ADDRESS", payload: response.data.address });
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   return (
     <>
       <div

@@ -27,33 +27,8 @@ export default function ConfirmationModal({ setShowConfirmationModal, adr }) {
   }
 
   return (
-    <div
-      className="ha-confirmation-modal-position"
-      //   style={{
-      //     position: "fixed",
-      //     top: "0",
-      //     left: "0",
-      //     right: "0",
-      //     bottom: "0",
-      //     backgroundColor: "rgba(218, 212, 212, 0.5)",
-      //   }}
-    >
-      <div
-        className="ha-confirmation-modal-view"
-        // style={{
-        //   display: "flex",
-        //   flexDirection: "column",
-        //   alignItems: "center",
-        //   justifyContent: "center",
-        //   position: "absolute",
-        //   top: "50%",
-        //   left: "50%",
-        //   transform: "translate(-50%,-50%)",
-        //   background: "white",
-        //   padding: "50px",
-        //   zIndex: "99",
-        // }}
-      >
+    <div className="ha-confirmation-modal-position">
+      <div className="ha-confirmation-modal-view">
         <h3>are you sure ? want to delete ?</h3>
         <div style={{ display: "flex", alignitems: "center", color: "white" }}>
           <button

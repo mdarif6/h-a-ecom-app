@@ -101,9 +101,6 @@ export default function ProductCard({ item }) {
             <div className="h-product-icon h-product-icon-red">
               <i
                 className="fas fa-heart"
-                // onClick={() =>
-                //   dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item })
-                // }
                 onClick={() => removeWishListHandler(item)}
               ></i>
             </div>
@@ -111,7 +108,6 @@ export default function ProductCard({ item }) {
             <div className="h-product-icon">
               <i
                 className="fas fa-heart"
-                // onClick={() => dispatch({ type: "ADD_TO_WISHLIST", payload: item })}
                 onClick={() => addToWishListHandler(item)}
               ></i>
             </div>
@@ -137,9 +133,6 @@ export default function ProductCard({ item }) {
             {state.cartList.some((p) => p._id === item._id) ? (
               <button
                 className="h-product-button"
-                // onClick={() =>
-                //   dispatch({ type: "REMOVE_FROM_CART", payload: item })
-                // }
                 onClick={() => removeCartHandler(item)}
               >
                 Remove From Cart
@@ -148,7 +141,6 @@ export default function ProductCard({ item }) {
               <button
                 className="h-product-button"
                 onClick={() => addToCartHandler(item)}
-                // onClick={() => dispatch({ type: "ADD_TO_CART", payload: item })}
               >
                 Add to Cart
               </button>

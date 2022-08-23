@@ -135,7 +135,6 @@ export default function Modal({ setShowModal }) {
             </div>
           </div>
           <div className="ha-address-bottom-btns">
-            {/* <button className="btn outline-primary btn-cancel">Cancel</button> */}
             <button className="btn btn-primary btn-save">Save</button>
           </div>
         </form>
