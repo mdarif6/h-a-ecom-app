@@ -74,17 +74,7 @@ export default function Main() {
                 }
               />
             </div>
-            <div className="login-check">
-              <div className="login-check-label">
-                <input
-                  type="checkbox"
-                  name="consent"
-                  id="consent"
-                  value="remember"
-                />
-                <label htmlFor="consent">I accept all Terms & Conditions</label>
-              </div>
-            </div>
+
             <button
               className={
                 register.name === "" ||
