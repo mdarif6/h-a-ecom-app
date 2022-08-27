@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
 import EditModal from "../modal/EditModal";
-import { useProduct } from "../../product-context";
 import ConfirmationModal from "../modal/ConfirmationModal";
 export default function AddressShipCard({ adr, setDisplayAddrID }) {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -50,7 +48,6 @@ export default function AddressShipCard({ adr, setDisplayAddrID }) {
               </button>
               <button
                 className="btn outline-primary btn-delete"
-                // onClick={() => deleteAddressHandle(adr)}
                 onClick={() => setShowConfirmationModal(true)}
               >
                 Delete

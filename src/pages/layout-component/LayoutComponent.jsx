@@ -7,7 +7,6 @@ export default function LayoutComponent({ children }) {
     <div>
       <Header />
       <div className="ha-layout-maincontent">{children}</div>
-
       <Footer />
     </div>
   );

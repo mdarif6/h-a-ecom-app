@@ -1,8 +1,5 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useState } from "react";
-import img3 from "../../assets/images/Jeans1.JPG";
-import { products } from "../../backend/db/products";
 import Spinner from "../../common/Spinner";
 import { useProduct } from "../../product-context";
 import ProductCard from "./ProductCard";

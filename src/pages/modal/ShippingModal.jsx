@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../../common/Header";
 import { useProduct } from "../../product-context";
-import AddressCard from "../address-page/AddressCard";
 import AddressShipCard from "../address-page/AddressShipCard";
-import EditModal from "../modal/EditModal";
 
 export default function ShippingModal({
   displayAddrID,

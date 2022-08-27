@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useProduct } from "../../product-context";
 import ConfirmationModal from "../modal/ConfirmationModal";

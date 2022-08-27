@@ -6,7 +6,7 @@ import { useAuth } from "../../auth-context";
 export default function Main() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState("");
+
   const navigate = useNavigate();
   const { state, dispatch } = useAuth();
 
@@ -37,21 +37,18 @@ export default function Main() {
         email: "adarshbalika@gmail.com",
         password: "adarshbalika",
       });
-      console.log(response.data);
-      setUser(response.data);
+
       if (response.status === 200 || response.status === 201) {
-        console.log(response.data.foundUser, "Arif");
         localStorage.setItem("authToken", response.data.encodedToken);
-        localStorage.setItem("userDetails", response.data.foundUser);
-        localStorage.setItem("fname", response.data.foundUser.firstName);
-        localStorage.setItem("lname", response.data.foundUser.lastName);
+        localStorage.setItem("firstname", response.data.foundUser.firstName);
+        localStorage.setItem("lastname", response.data.foundUser.lastName);
         localStorage.setItem("email", response.data.foundUser.email);
 
         navigate("/");
         dispatch({ type: "SET_AUTH", payload: true });
         dispatch({
           type: "ADD_USERINFO",
-          payload: { fName: response.data.foundUser.firstName },
+          payload: response.data.foundUser,
         });
       }
     } catch (error) {

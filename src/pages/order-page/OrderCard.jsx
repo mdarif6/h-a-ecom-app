@@ -1,14 +1,10 @@
 import React, { useEffect } from "react";
 import "./OrderCard.css";
 import axios from "axios";
-import { useState } from "react";
 import { useProduct } from "../../product-context";
-import EditModal from "../modal/EditModal";
 
 export default function OrderCard() {
   const { state, dispatch } = useProduct();
-
-  const [showEditModal, setShowEditModal] = useState(false);
 
   function getTotalPrice(list) {
     return list.reduce((acc, current) => {

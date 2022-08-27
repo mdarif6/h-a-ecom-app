@@ -3,20 +3,9 @@
   text-align: center;
 }
 
-/* .ha-wish-content {
-  min-height: 100vh;
-  position: relative;
-  margin: 0 auto;
-  display: grid;
-  grid-gap: 0.625rem;
-  grid-template-columns: 1fr;
-  grid-template-rows: min-content auto min-content;
-} */
-
 .ha-wish-gtr {
   margin-top: 1rem;
-  /* grid-column: 1/2;
-  grid-row: 2/3; */
+
   background-color: var(--ha-light-background-color);
 }
 
