@@ -6,7 +6,7 @@ export default function () {
   return (
     <main className="ha-wish-gtr">
       <div className="wishlist-heading">
-        <h3>My Wishlist ( {state.wishList.length} item)</h3>
+        <h2>My Wishlist ( {state.wishList.length} item)</h2>
       </div>
       <div className="ha-main-wishlist-product">
         {state.wishList.map((item) => (

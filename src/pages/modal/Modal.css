@@ -17,6 +17,7 @@
   z-index: 99;
 }
 .ha-address-bottom-btns {
+  margin-top: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,6 +60,8 @@
 }
 .address-close i {
   margin-left: auto;
+  padding: 0.5rem 0.5rem 0 0;
+  cursor: pointer;
 }
 .card-for-modal {
   margin: 0;
@@ -113,9 +116,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 50px;
+  background-color: var(--ha-white-color);
+  padding: 1rem;
   z-index: 99;
+  border: 1px solid var(--ha-primary-color);
+  text-align: center;
+  font-size: 1rem;
+}
+.ha-confirmation-modal-view h3 {
+  font-size: 1rem;
 }
 .btn-primary-cancel {
   background-color: var(--ha-primary-color);
@@ -137,4 +146,11 @@
 .btn-gotoaddress {
   background-color: var(--ha-primary-color);
   cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+  .address-and-btn-wrapper {
+    margin-top: 3rem;
+    width: 90%;
+  }
 }

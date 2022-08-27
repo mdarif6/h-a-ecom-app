@@ -6,9 +6,9 @@ import SuccessMain from "./SuccessMain";
 export default function SuccessPage() {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <SuccessMain />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 .ha-error-page {
-  margin: 3rem;
+  padding-top: 1rem;
   text-align: center;
 }
 .ha-error-page img {
@@ -23,5 +23,12 @@
 @media only screen and (max-width: 800px) {
   .ha-error-page img {
     max-width: 300px;
+  }
+
+  .main-heading {
+    padding: 1rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: black;
   }
 }

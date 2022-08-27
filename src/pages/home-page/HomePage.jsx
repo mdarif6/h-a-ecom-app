@@ -8,11 +8,11 @@ export default function HomePage() {
   return (
     <div>
       <div className="ha-content">
-        <HeaderHome />
+        {/* <HeaderHome /> */}
         <CategorySection />
         <MainImage />
         <NavImage />
-        <FooterHome />
+        {/* <FooterHome /> */}
       </div>
     </div>
   );

@@ -29,7 +29,7 @@ export default function ConfirmationModal({ setShowConfirmationModal, adr }) {
   return (
     <div className="ha-confirmation-modal-position">
       <div className="ha-confirmation-modal-view">
-        <h3>are you sure ? want to delete ?</h3>
+        <h3>Are you sure you want to delete?</h3>
         <div style={{ display: "flex", alignitems: "center", color: "white" }}>
           <button
             className="btn btn-primary-cancel"

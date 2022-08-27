@@ -20,7 +20,7 @@ export default function SuccessMain() {
         </p>
 
         <button
-          className="btn "
+          className="btn btn-primary"
           onClick={() => {
             navigate("/my-account");
           }}

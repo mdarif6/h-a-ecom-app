@@ -15,7 +15,7 @@ export default function Main() {
   return (
     <main className="ha-cart-gtr">
       <div className="cart-heading">
-        <h3>MY CART ({state.cartList.length})</h3>
+        <h2>MY CART ({state.cartList.length})</h2>
       </div>
       <div className="h-cart-container">
         <div className="card-wrap">

@@ -6,9 +6,9 @@ import AccountMain from "./AccountMain";
 export default function AccountPage() {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <AccountMain />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

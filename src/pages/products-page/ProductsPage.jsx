@@ -9,11 +9,11 @@ export default function ProductsPage() {
   const [showSideBar, setShowSideBar] = useState(false);
   return (
     <div className="ha-prod-content">
-      <HeaderHome />
+      {/* <HeaderHome /> */}
       {<AsideFilter />}
       {showSideBar && <AsideFilterMobile />}
       <Main setShowSideBar={setShowSideBar} />
-      <FooterHome />
+      {/* <FooterHome /> */}
     </div>
   );
 }
