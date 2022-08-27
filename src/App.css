@@ -9,6 +9,7 @@
   --ha-login-btn-hover-color: #059fd3e8;
   --ha-gray-color: #808080;
   --ha-price-color: #008600;
+  --ha-standard-text-color: #000000;
 }
 
 @import url(/src/pages/home-page/HomePage.css);
@@ -18,3 +19,4 @@
 @import url(/src/pages/signup-page/SignupPage.css);
 @import url(/src/pages/wishlist-page/WishList.css);
 @import url(/src/pages/account-page/AccountPage.css);
+@import url(/src/pages/page-not-found/PageNotFound.css);

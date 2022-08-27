@@ -2,19 +2,10 @@
   padding: 0.625rem;
   text-align: center;
 }
-/* .ha-cart-content {
-  min-height: 100vh;
-  position: relative;
-  margin: 0 auto;
-  display: grid;
-  grid-gap: 0.625rem;
-  grid-template-columns: 1fr;
-  grid-template-rows: min-content auto min-content;
-} */
+
 .ha-cart-gtr {
   margin-top: 1rem;
-  /* grid-column: 1/2;
-  grid-row: 2/3; */
+
   background-color: var(--ha-light-background-color);
 }
 .cart-heading {
@@ -40,8 +31,6 @@
   gap: 1rem;
 }
 .h-imagecart-wrapper {
-  /* margin: 0 2rem; */
-  /* width: 80%; */
   display: flex;
   background-color: var(--ha-white-color);
 }
@@ -59,7 +48,6 @@
   align-items: center;
   width: 100%;
   margin: auto;
-  /* padding: 1rem 2rem 0 2rem; */
 }
 .image-text h3,
 p {
@@ -132,7 +120,6 @@ p {
   }
 
   .h-imagecart-wrapper {
-    /* width: 60%; */
     margin: 0 2rem;
     display: flex;
     flex-direction: column;

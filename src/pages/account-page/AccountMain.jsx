@@ -48,6 +48,10 @@ export default function AccountMain() {
     getAddressData();
   }, []);
 
+  let userFirstName = localStorage.getItem("firstname");
+  let userLastName = localStorage.getItem("lastname");
+  let userEmail = localStorage.getItem("email");
+
   return (
     <div>
       <h2 className="ha-account-heading">My Account Details</h2>
@@ -119,11 +123,9 @@ export default function AccountMain() {
           <div className="ha-account-details">
             <h4>Personal Information</h4>
             <p>
-              {console.log(authState)}
-              Name : {authState.userInfo.firstName}
-              {authState.userInfo.lastName} {authState.userInfo.name}
+              Name : {userFirstName} {userLastName}
             </p>
-            <p>Email id : {authState.userInfo.email}</p>
+            <p>Email id : {userEmail}</p>
           </div>
         )}
 
@@ -134,7 +136,7 @@ export default function AccountMain() {
             {state.orders.length > 0 ? (
               <OrderCard />
             ) : (
-              <h3 className="ha-absent-heading">No order available till now</h3>
+              <h3 className="ha-absent-heading">No Order Available! </h3>
             )}
           </div>
         )}

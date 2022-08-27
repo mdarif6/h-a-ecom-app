@@ -15,7 +15,7 @@
   flex-wrap: wrap;
 }
 .ha-absent-heading {
-  color: var(--ha-primary-color);
+  text-align: center;
 }
 .ha-account-list {
   cursor: pointer;
@@ -40,11 +40,13 @@
 .ha-addheading-and-icon {
   display: flex;
 }
+.ha-addheading-and-icon i {
+  cursor: pointer;
+}
 .ha-addheading-and-icon i,
 h3 {
   margin-left: auto;
-  font-size: 1.5rem;
-  color: var(--ha-primary-color);
+
   font-weight: bold;
 }
 
@@ -77,7 +79,7 @@ h3 {
 .ha-address-add {
   cursor: pointer;
   padding: 1rem;
-  font-size: 1rem;
+  font-size: 1.125rem;
   color: var(--ha-primary-color);
   height: fit-content;
   background: none;
@@ -85,9 +87,14 @@ h3 {
 }
 .ha-order-heading {
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 18px;
+  color: var(--ha-primary-color);
   text-align: center;
   padding: 1rem;
+}
+.ha-account-details h4 {
+  color: var(--ha-primary-color);
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 800px) {
@@ -100,5 +107,8 @@ h3 {
   }
   .ha-account-list {
     margin: 0;
+  }
+  .ha-account-details h4 {
+    text-align: center;
   }
 }

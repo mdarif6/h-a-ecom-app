@@ -18,10 +18,12 @@ export default function Main() {
 
     try {
       const response = await axios.post("/api/auth/signup", register);
-
+      console.log(response.data);
       if (response.status === 200 || response.status === 201) {
         localStorage.setItem("authToken", response.data.encodedToken);
-
+        localStorage.setItem("firstname", response.data.createdUser.name);
+        localStorage.setItem("email", response.data.createdUser.email);
+        navigate("/");
         dispatch({ type: "SET_AUTH", payload: true });
         dispatch({ type: "ADD_USERINFO", payload: response.data.createdUser });
       }
