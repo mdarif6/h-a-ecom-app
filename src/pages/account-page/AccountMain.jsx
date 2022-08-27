@@ -119,6 +119,7 @@ export default function AccountMain() {
           <div className="ha-account-details">
             <h4>Personal Information</h4>
             <p>
+              {console.log(authState)}
               Name : {authState.userInfo.firstName}
               {authState.userInfo.lastName} {authState.userInfo.name}
             </p>
@@ -141,7 +142,7 @@ export default function AccountMain() {
         {currentTab === 2 && (
           <div className="ha-account-details address-display">
             <button className="ha-address-add" onClick={showAddressModal}>
-              Add new address
+              click to add new address
             </button>
 
             {state.address.map((adr) => {

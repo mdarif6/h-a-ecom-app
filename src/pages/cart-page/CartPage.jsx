@@ -5,9 +5,9 @@ import Main from "./Main";
 export default function CartPage() {
   return (
     <div className="ha-cart-content">
-      <Header />
+      {/* <Header /> */}
       <Main />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

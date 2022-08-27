@@ -4,17 +4,21 @@
 }
 
 .ha-login-content {
+  margin-top: 1rem;
+}
+/* .ha-login-content {
   position: relative;
   margin: 0 auto;
   display: grid;
   grid-gap: 0.625rem;
   grid-template-columns: 1fr;
   grid-template-rows: min-content auto min-content;
-}
+} */
 
 .ha-header-gtr {
-  grid-column: 1/2;
-  grid-row: 1/2;
+  /* grid-column: 1/2;
+  grid-row: 1/2; */
+  padding: 0.25rem;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -104,6 +108,7 @@
   width: 370px;
   font-size: 1rem;
   color: var(--ha-primary-color) !important ;
+  border-color: var(--ha-primary-color) !important;
 }
 
 .outline-primary:hover {
@@ -127,6 +132,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .footer-heading,
