@@ -1,15 +1,25 @@
 import React from "react";
-import { useProduct } from "../../product-context";
 import { useEffect } from "react";
 import FilterCategories from "./FilterCategories";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  sortingByLowHighPrice,
+  sortingByStarRating,
+  filteringByRange,
+  settingCategories,
+  clearCategories,
+} from "../../features/productSlice";
 export default function AsideFilterMobile() {
-  const { state, dispatch } = useProduct();
+  const { sortByPrice, sortByRating, categories } = useSelector(
+    (state) => state.products
+  );
+  const dispatchRedux = useDispatch();
 
   useEffect(() => {
     fetch("api/categories")
       .then((response) => response.json())
-      .then((data) =>
-        dispatch({ type: "SET_CATEGORIES", payload: data.categories })
+      .then(
+        (data) => (data) => dispatchRedux(settingCategories(data.categories))
       );
   }, []);
 
@@ -20,10 +30,13 @@ export default function AsideFilterMobile() {
         <h3
           className="ha-clear-filter"
           onClick={() => {
-            dispatch({ type: "SORTING", payload: "" });
-            dispatch({ type: "RATING", payload: "" });
-            dispatch({ type: "BY_RANGE", payload: { name: "", value: 0 } });
-            dispatch({ type: "RESET_CATEGORY", payload: [] });
+            dispatchRedux(sortingByLowHighPrice(""));
+
+            dispatchRedux(sortingByStarRating(""));
+
+            dispatchRedux(filteringByRange(3000));
+
+            dispatchRedux(clearCategories([]));
           }}
         >
           Clear
@@ -42,12 +55,8 @@ export default function AsideFilterMobile() {
           step="100"
           min="100"
           max="3000"
-          value={state.sortByRange.value}
           onChange={(e) => {
-            dispatch({
-              type: "BY_RANGE",
-              payload: { name: "BY_RANGE", value: e.target.value },
-            });
+            dispatchRedux(filteringByRange(e.target.value));
           }}
         />
       </div>
@@ -57,7 +66,7 @@ export default function AsideFilterMobile() {
       </div>
 
       <form action="check">
-        {state.categories.map((category) => (
+        {categories.map((category) => (
           <FilterCategories key={category._id} category={category} />
         ))}
       </form>
@@ -71,10 +80,11 @@ export default function AsideFilterMobile() {
               <input
                 type="radio"
                 id="4Stars"
-                checked={state.sortByRating === "FOUR_AND_ABOVE"}
+                value="FOUR_AND_ABOVE"
+                checked={sortByRating === "FOUR_AND_ABOVE"}
                 name="h-radio"
                 onChange={() =>
-                  dispatch({ type: "RATING", payload: "FOUR_AND_ABOVE" })
+                  dispatchRedux(sortingByStarRating("FOUR_AND_ABOVE"))
                 }
               />
               <label htmlFor="4Stars">4 Stars & above</label>
@@ -84,10 +94,11 @@ export default function AsideFilterMobile() {
               <input
                 type="radio"
                 id="3Stars"
-                checked={state.sortByRating === "THREE_AND_ABOVE"}
+                value="THREE_AND_ABOVE"
+                checked={sortByRating === "THREE_AND_ABOVE"}
                 name="h-radio"
                 onChange={() =>
-                  dispatch({ type: "RATING", payload: "THREE_AND_ABOVE" })
+                  dispatchRedux(sortingByStarRating("THREE_AND_ABOVE"))
                 }
               />
               <label htmlFor="3Stars">3 Stars & above</label>
@@ -97,10 +108,11 @@ export default function AsideFilterMobile() {
               <input
                 type="radio"
                 id="2Stars"
-                checked={state.sortByRating === "TWO_AND_ABOVE"}
+                value="TWO_AND_ABOVE"
+                checked={sortByRating === "TWO_AND_ABOVE"}
                 name="h-radio"
                 onChange={() =>
-                  dispatch({ type: "RATING", payload: "TWO_AND_ABOVE" })
+                  dispatchRedux(sortingByStarRating("TWO_AND_ABOVE"))
                 }
               />
               <label htmlFor="2Stars">2 Stars & above</label>
@@ -110,10 +122,11 @@ export default function AsideFilterMobile() {
               <input
                 type="radio"
                 id="1Stars"
-                checked={state.sortByRating === "ONE_AND_ABOVE"}
+                value="ONE_AND_ABOVE"
+                checked={sortByRating === "ONE_AND_ABOVE"}
                 name="h-radio"
                 onChange={() =>
-                  dispatch({ type: "RATING", payload: "ONE_AND_ABOVE" })
+                  dispatchRedux(sortingByStarRating("ONE_AND_ABOVE"))
                 }
               />
               <label htmlFor="1Stars">1 Stars & above</label>
@@ -127,29 +140,34 @@ export default function AsideFilterMobile() {
 
         <div className="ha-sorting-parent">
           <div>
-            <input
-              type="radio"
-              id="LowtoHigh"
-              checked={state.sortByPrice === "LOW_TO_HIGH"}
-              name="h-radio"
-              onChange={() =>
-                dispatch({ type: "SORTING", payload: "LOW_TO_HIGH" })
-              }
-            />
-            <label htmlFor="LowtoHigh">Low to High</label>
-          </div>
-
-          <div>
-            <input
-              type="radio"
-              id="HightoLow"
-              checked={state.sortByPrice === "HIGH_TO_LOW"}
-              name="h-radio"
-              onChange={() =>
-                dispatch({ type: "SORTING", payload: "HIGH_TO_LOW" })
-              }
-            />
-            <label htmlFor="HightoLow">High to Low</label>
+            <div>
+              <label htmlFor="LowtoHigh">
+                <input
+                  type="radio"
+                  id="LowtoHigh"
+                  value="LOW_TO_HIGH"
+                  checked={sortByPrice === "LOW_TO_HIGH"}
+                  onChange={(e) =>
+                    dispatchRedux(sortingByLowHighPrice(e.target.value))
+                  }
+                />
+                Low to High
+              </label>
+            </div>
+            <div>
+              <label htmlFor="HightoLow">
+                <input
+                  type="radio"
+                  id="HightoLow"
+                  value="HIGH_TO_LOW"
+                  checked={sortByPrice === "HIGH_TO_LOW"}
+                  onChange={(e) =>
+                    dispatchRedux(sortingByLowHighPrice(e.target.value))
+                  }
+                />
+                High to Low
+              </label>
+            </div>
           </div>
         </div>
       </div>

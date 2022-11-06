@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { useProduct } from "../../product-context";
 import CartCard from "./CartCard";
 import CartPrice from "./CartPrice";
+import { useSelector } from "react-redux";
 
 export default function Main() {
-  const { state, dispatch } = useProduct();
+  const { cartList } = useSelector((state) => state.products);
 
   function getTotalPrice(list) {
     return list.reduce((acc, current) => {
@@ -15,11 +15,11 @@ export default function Main() {
   return (
     <main className="ha-cart-gtr">
       <div className="cart-heading">
-        <h2>MY CART ({state.cartList.length})</h2>
+        <h2>MY CART ({cartList.length})</h2>
       </div>
       <div className="h-cart-container">
         <div className="card-wrap">
-          {state.cartList.map((item) => (
+          {cartList.map((item) => (
             <CartCard key={item._id} item={item} />
           ))}
         </div>
@@ -28,14 +28,14 @@ export default function Main() {
           <div className="cart-price">PRICE DETAILS</div>
           <div className="blank-div"></div>
           <div className="h-prices">
-            {state.cartList.map((item) => (
+            {cartList.map((item) => (
               <CartPrice key={item._id} item={item} />
             ))}
 
             <div className="blank-div"></div>
             <div className="item-pricee">
               <p className="total-price">TOTAL AMOUNT</p>
-              <p>{getTotalPrice(state.cartList)}</p>
+              <p>{getTotalPrice(cartList)}</p>
             </div>
 
             <div className="blank-div"></div>
@@ -43,11 +43,11 @@ export default function Main() {
             <Link to="/shipping">
               <button
                 className={
-                  state.cartList.length > 0
+                  cartList.length > 0
                     ? "remove-btn price-btn"
                     : "remove-btn price-btn disabled-btn"
                 }
-                disabled={state.cartList.length > 0 ? false : true}
+                disabled={cartList.length > 0 ? false : true}
               >
                 PROCEED TO SHIPPING
               </button>

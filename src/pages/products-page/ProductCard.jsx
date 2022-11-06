@@ -1,11 +1,19 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { useProduct } from "../../product-context";
-import { useAuth } from "../../auth-context";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  removeFromCart,
+  addToWishList,
+  removeFromWishList,
+} from "../../features/productSlice";
+import { settingAuthentication } from "../../features/authSlice";
 
 export default function ProductCard({ item }) {
-  const { state, dispatch } = useProduct();
-  const { state: authState, dispatch: authDispatch } = useAuth();
+  const { cartList, wishList } = useSelector((state) => state.products);
+  const { isAuthenticated } = useSelector((state) => state.authentication);
+  const dispatchRedux = useDispatch();
 
   async function addToCartHandler(item) {
     let token = localStorage.getItem("authToken");
@@ -24,7 +32,7 @@ export default function ProductCard({ item }) {
       );
 
       if (response.status === 201) {
-        dispatch({ type: "ADD_TO_CART", payload: item });
+        dispatchRedux(addToCart(item));
       }
     } catch (error) {
       console.log(error);
@@ -41,7 +49,7 @@ export default function ProductCard({ item }) {
       });
 
       if (response.status === 200) {
-        dispatch({ type: "REMOVE_FROM_CART", payload: item });
+        dispatchRedux(removeFromCart(item));
       }
     } catch (error) {
       console.log(error);
@@ -64,7 +72,7 @@ export default function ProductCard({ item }) {
       );
 
       if (response.status === 201) {
-        dispatch({ type: "ADD_TO_WISHLIST", payload: item });
+        dispatchRedux(addToWishList(item));
       }
     } catch (error) {
       console.log(error);
@@ -81,7 +89,7 @@ export default function ProductCard({ item }) {
       });
 
       if (response.status === 200) {
-        dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item });
+        dispatchRedux(removeFromWishList(item));
       }
     } catch (error) {
       console.log(error);
@@ -89,15 +97,15 @@ export default function ProductCard({ item }) {
   }
   function logoutHandler() {
     localStorage.removeItem("authToken");
-    authDispatch({ type: "SET_AUTH", payload: false });
+    dispatchRedux(settingAuthentication(false));
   }
   return (
     <div className="h-grid-product" key={item._id}>
       <img src={item.image} />
 
-      {authState.isAuthenticated ? (
+      {isAuthenticated ? (
         <>
-          {state.wishList.some((p) => p._id === item._id) ? (
+          {wishList.some((p) => p._id === item._id) ? (
             <div className="h-product-icon h-product-icon-red">
               <i
                 className="fas fa-heart"
@@ -128,9 +136,9 @@ export default function ProductCard({ item }) {
           Offer Price: <small>₹ {item.price}</small>
         </p>
 
-        {authState.isAuthenticated ? (
+        {isAuthenticated ? (
           <>
-            {state.cartList.some((p) => p._id === item._id) ? (
+            {cartList.some((p) => p._id === item._id) ? (
               <button
                 className="h-product-button"
                 onClick={() => removeCartHandler(item)}

@@ -1,20 +1,23 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../auth-context";
-import { useProduct } from "../../product-context";
 import AddressCard from "../address-page/AddressCard";
 import Modal from "../modal/Modal";
 import OrderCard from "../order-page/OrderCard";
 import "./AccountPage";
+import { useDispatch, useSelector } from "react-redux";
+import { addAddress } from "../../features/productSlice";
+import { settingAuthentication } from "../../features/authSlice";
 
 export default function AccountMain() {
-  const { state, dispatch } = useProduct();
-  const { state: authState, dispatch: authDispatch } = useAuth();
+  const { isAuthenticated } = useSelector((state) => state.authentication);
+
   const [showModal, setShowModal] = useState(false);
   const [currentTab, setCurrentTab] = useState(0);
   const [bgColor, setBgColor] = useState("#faeded");
   const [textColor, setTextColor] = useState("black");
+  const { address, orders } = useSelector((state) => state.products);
+  const dispatchRedux = useDispatch();
 
   function highlightTab() {
     setBgColor("#c91212");
@@ -26,7 +29,10 @@ export default function AccountMain() {
   }
   function logoutHandler() {
     localStorage.removeItem("authToken");
-    authDispatch({ type: "SET_AUTH", payload: false });
+    localStorage.removeItem("firstname");
+    localStorage.removeItem("lastname");
+    localStorage.removeItem("email");
+    dispatchRedux(settingAuthentication(false));
   }
   useEffect(() => {
     async function getAddressData() {
@@ -39,7 +45,7 @@ export default function AccountMain() {
         });
 
         if (response.status === 200) {
-          dispatch({ type: "ADD_ADDRESS", payload: response.data.address });
+          dispatchRedux(addAddress(response.data.address));
         }
       } catch (error) {
         console.log(error);
@@ -133,7 +139,7 @@ export default function AccountMain() {
           <div className="ha-account-details">
             <div className="ha-order-heading">My Orders</div>
 
-            {state.orders.length > 0 ? (
+            {orders.length > 0 ? (
               <OrderCard />
             ) : (
               <h3 className="ha-absent-heading">No Order Available! </h3>
@@ -147,7 +153,7 @@ export default function AccountMain() {
               click to add new address
             </button>
 
-            {state.address.map((adr) => {
+            {address.map((adr) => {
               return <AddressCard adr={adr} />;
             })}
           </div>
@@ -157,7 +163,7 @@ export default function AccountMain() {
           <div className="ha-account-details">
             <h4 className="ha-setting-heading">My Settings</h4>
 
-            {authState.isAuthenticated ? (
+            {isAuthenticated ? (
               <Link to="/login">
                 <button
                   className="ha-nav-btn address-logout-btn"

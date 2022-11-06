@@ -1,38 +1,51 @@
 import axios from "axios";
 import { useEffect } from "react";
 import Spinner from "../../common/Spinner";
-import { useProduct } from "../../product-context";
 import ProductCard from "./ProductCard";
+import { useSelector, useDispatch } from "react-redux";
+import { loaderLoading, productsOnUI } from "../../features/productSlice";
 
 export default function Main({ setShowSideBar }) {
-  const { state, dispatch } = useProduct();
+  const {
+    loader,
+    products,
+    sortByPrice,
+    sortByRating,
+    sortByRange,
+    sortByCategory,
+    searchQuery,
+  } = useSelector((state) => state.products);
+
+  const dispatchRedux = useDispatch();
 
   useEffect(() => {
     (async function showProducts() {
       try {
-        dispatch({ type: "LOADER", payload: true });
+        dispatchRedux(loaderLoading(true));
         const response = await axios.get("api/products");
-        dispatch({ type: "LOADER", payload: false });
+
+        dispatchRedux(loaderLoading(false));
 
         if (response.status === 200 || response.status === 201) {
-          dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
+          dispatchRedux(productsOnUI(response.data.products));
         }
       } catch (error) {
         console.log(error);
-        dispatch({ type: "LOADER", payload: false });
+
+        dispatchRedux(loaderLoading(false));
       }
     })();
   }, []);
 
   function sortingByPrice(items, sort) {
+    let itemsCopy = [...items];
+
     if (sort === "LOW_TO_HIGH") {
-      return items.sort((a, b) => Number(a.price) - Number(b.price));
+      return itemsCopy.sort((a, b) => Number(a.price) - Number(b.price));
     } else if (sort === "HIGH_TO_LOW") {
-      {
-        return items.sort((a, b) => Number(b.price) - Number(a.price));
-      }
+      return itemsCopy.sort((a, b) => Number(b.price) - Number(a.price));
     } else {
-      return items;
+      return itemsCopy;
     }
   }
 
@@ -51,14 +64,9 @@ export default function Main({ setShowSideBar }) {
   }
 
   function sortingByRange(items, range) {
-    if (range.name === "BY_RANGE") {
-      return items.filter(
-        (item) =>
-          Number(item.price) > 0 && Number(item.price) < Number(range.value)
-      );
-    } else {
-      return items;
-    }
+    return items.filter(
+      (item) => Number(item.price) > 0 && Number(item.price) < range
+    );
   }
 
   function filterByCategory(items, categ) {
@@ -76,28 +84,25 @@ export default function Main({ setShowSideBar }) {
   }
 
   function filterBySearch(items, search) {
-    if (search.name === "SEARCH_ENTER") {
-      return items.filter((item) => {
-        if (item.design.toLowerCase().includes(search.value.toLowerCase())) {
-          return item;
-        }
-      });
-    } else {
-      return items;
-    }
+    return items.filter((item) => {
+      if (item.design.toLowerCase().includes(search.toLowerCase())) {
+        return item;
+      }
+    });
   }
 
-  const setByPrice = sortingByPrice(state.products, state.sortByPrice);
-  const setByRating = sortingByRating(setByPrice, state.sortByRating);
-  const setByRange = sortingByRange(setByRating, state.sortByRange);
-  const setByCategory = filterByCategory(setByRange, state.sortByCategory);
-  const setBySearch = filterBySearch(setByCategory, state.searchQuery);
+  const setByPrice = sortingByPrice(products, sortByPrice);
+  const setByRating = sortingByRating(setByPrice, sortByRating);
+  const setByRange = sortingByRange(setByRating, sortByRange);
+  const setByCategory = filterByCategory(setByRange, sortByCategory);
+  const setBySearch = filterBySearch(setByCategory, searchQuery);
   function showHideHandle() {
     setShowSideBar((previous) => !previous);
   }
+
   return (
     <>
-      {state.loader ? (
+      {loader ? (
         <Spinner />
       ) : (
         <>
@@ -105,11 +110,11 @@ export default function Main({ setShowSideBar }) {
           <main>
             <div className="h-main-heading">
               Showing All Proucts
-              <small>(Showing {setByCategory.length} products)</small>
+              <small>(Showing {setBySearch.length} products)</small>
             </div>
 
             <div className="ha-grid-main">
-              {setBySearch &&
+              {setBySearch.length > 0 &&
                 setBySearch.map((item) => (
                   <ProductCard key={item._id} item={item} />
                 ))}

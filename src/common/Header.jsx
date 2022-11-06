@@ -1,12 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
 import img1 from "../assets/images/logo.png";
-import { useAuth } from "../auth-context";
-import { useProduct } from "../product-context";
+import { useSelector, useDispatch } from "react-redux";
+import { searchingProduct } from "../features/productSlice";
 
 export default function Header() {
-  const { state, dispatch } = useProduct();
-  const { state: authState, dispatch: authDispatch } = useAuth();
   const location = useLocation();
+  const { sortByCategory, cartList, wishList } = useSelector(
+    (state) => state.products
+  );
+  const { isAuthenticated } = useSelector((state) => state.authentication);
+  const dispatchRedux = useDispatch();
 
   return (
     <>
@@ -32,11 +35,7 @@ export default function Header() {
                 name="name"
                 placeholder="search"
                 onChange={(e) => {
-                  dispatch({
-                    type: "SEARCH_ENTER",
-
-                    payload: { name: "SEARCH_ENTER", value: e.target.value },
-                  });
+                  dispatchRedux(searchingProduct(e.target.value));
                 }}
               />
               <a className="ha-search-button" href="#">
@@ -47,7 +46,7 @@ export default function Header() {
 
           <div className="header-icons">
             <div className="ha-nav-icons">
-              {authState.isAuthenticated ? (
+              {isAuthenticated ? (
                 <div className="badge-icon">
                   <div className="badge-on-icon">
                     <Link to="/my-account">
@@ -67,7 +66,7 @@ export default function Header() {
                     <i className="fas fa-heart"></i>
                   </Link>
                 </div>
-                <span className="badge-number">{state.wishList.length}</span>
+                <span className="badge-number">{wishList.length}</span>
               </div>
 
               <div className="badge-icon">
@@ -76,7 +75,7 @@ export default function Header() {
                     <i className="fas fa-shopping-cart"></i>
                   </Link>
 
-                  <span className="badge-number">{state.cartList.length}</span>
+                  <span className="badge-number">{cartList.length}</span>
                 </div>
               </div>
             </div>
@@ -102,7 +101,7 @@ export default function Header() {
             <div className="search-and-icons">
               <div className="header-icons">
                 <div className="ha-nav-icons">
-                  {authState.isAuthenticated ? (
+                  {isAuthenticated ? (
                     <div className="badge-icon">
                       <div className="badge-on-icon">
                         <Link to="/my-account">
@@ -122,9 +121,7 @@ export default function Header() {
                         <i className="fas fa-heart"></i>
                       </Link>
                     </div>
-                    <span className="badge-number">
-                      {state.wishList.length}
-                    </span>
+                    <span className="badge-number">{wishList.length}</span>
                   </div>
 
                   <div className="badge-icon">
@@ -133,9 +130,7 @@ export default function Header() {
                         <i className="fas fa-shopping-cart"></i>
                       </Link>
 
-                      <span className="badge-number">
-                        {state.cartList.length}
-                      </span>
+                      <span className="badge-number">{cartList.length}</span>
                     </div>
                   </div>
                 </div>
@@ -151,11 +146,7 @@ export default function Header() {
                 name="name"
                 placeholder="search"
                 onChange={(e) => {
-                  dispatch({
-                    type: "SEARCH_ENTER",
-
-                    payload: { name: "SEARCH_ENTER", value: e.target.value },
-                  });
+                  dispatchRedux(searchingProduct(e.target.value));
                 }}
               />
               <a className="ha-search-button-home" href="#">

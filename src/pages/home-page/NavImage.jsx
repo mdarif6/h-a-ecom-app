@@ -1,4 +1,5 @@
-import img3 from "../../assets/images/Jeans1.JPG";
+import img3 from "../../assets/images/winter1.jpg";
+import img4 from "../../assets/images/winter2.jpg";
 export default function NavImage() {
   return (
     <nav className="h-home-belowimg">
@@ -18,7 +19,7 @@ export default function NavImage() {
         </div>
         <div className="h-image-wrapper">
           <div className="below-imgone">
-            <img src={img3} alt="" />
+            <img src={img4} alt="" />
           </div>
           <div className="below-img-text">
             <h3>NEW ARRIVALS</h3>

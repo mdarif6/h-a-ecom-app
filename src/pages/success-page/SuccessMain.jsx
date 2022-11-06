@@ -1,13 +1,13 @@
 import React from "react";
-import { useProduct } from "../../product-context";
 import "./SuccessPage.css";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function SuccessMain() {
-  const { state, dispatch } = useProduct();
   const navigate = useNavigate();
+  const { orders } = useSelector((state) => state.products);
 
-  const getUserName = state.orders.map((item) => item.order.address.name);
+  const getUserName = orders.map((item) => item.order.address.name);
 
   return (
     <div className="order-success-wrapper">

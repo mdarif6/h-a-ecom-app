@@ -2,10 +2,10 @@ import "./Modal.css";
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
-import { useProduct } from "../../product-context";
 
+import { useDispatch } from "react-redux";
+import { addAddress } from "../../features/productSlice";
 export default function EditModal({ setShowModal, adr }) {
-  const { dispatch } = useProduct();
   const [name, setName] = useState(adr.name);
   const [mobile, setMobile] = useState(adr.mobile);
   const [pincode, setPincode] = useState(adr.pincode);
@@ -14,6 +14,7 @@ export default function EditModal({ setShowModal, adr }) {
   const [landmark, setLandmark] = useState(adr.landmark);
   const [district, setDistrict] = useState(adr.district);
   const [state, setState] = useState(adr.state);
+  const dispatchRedux = useDispatch();
 
   function modalCloseHandle() {
     setShowModal(false);
@@ -44,7 +45,8 @@ export default function EditModal({ setShowModal, adr }) {
       );
 
       if (response.status === 200) {
-        dispatch({ type: "ADD_ADDRESS", payload: response.data.address });
+        dispatchRedux(addAddress(response.data.address));
+
         setShowModal(false);
       }
     } catch (error) {

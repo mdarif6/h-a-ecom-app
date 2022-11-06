@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import "./OrderCard.css";
 import axios from "axios";
-import { useProduct } from "../../product-context";
 
+import { useSelector, useDispatch } from "react-redux";
+import { addOrders } from "../../features/productSlice";
 export default function OrderCard() {
-  const { state, dispatch } = useProduct();
-
+  const { cartList, orders } = useSelector((state) => state.products);
+  const dispatchRedux = useDispatch();
   function getTotalPrice(list) {
     return list.reduce((acc, current) => {
       return acc + Number(current.price) * Number(current.qty);
@@ -23,7 +24,7 @@ export default function OrderCard() {
         });
 
         if (response.status === 200) {
-          dispatch({ type: "ADD_ORDERS", payload: response.data.orders });
+          dispatchRedux(addOrders(response.data.orders));
         }
       } catch (error) {
         console.log(error);
@@ -39,10 +40,10 @@ export default function OrderCard() {
           <div className="card-desc-top-details">
             <p className="order-confirmation">Order Confirmed</p>
             <p className="order-total-price">
-              Total : <span> ₹{getTotalPrice(state.cartList)}</span>
+              Total : <span> ₹{getTotalPrice(cartList)}</span>
             </p>
           </div>
-          {state.orders.map((item) => {
+          {orders.map((item) => {
             return item.order.cart.map((inner) => {
               return (
                 <>
