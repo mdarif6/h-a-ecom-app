@@ -1,9 +1,16 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useProduct } from "../../product-context";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  removeFromCart,
+  removeFromWishList,
+  wishListUpdate,
+} from "../../features/productSlice";
 
 export default function WishListCard({ item }) {
-  const { state, dispatch } = useProduct();
+  const { cartList } = useSelector((state) => state.products);
+  const dispatchRedux = useDispatch();
 
   useEffect(() => {
     async function getWishListProduct() {
@@ -16,10 +23,7 @@ export default function WishListCard({ item }) {
         });
 
         if (response.status === 200) {
-          dispatch({
-            action: "WISHLIST_UPDATE",
-            payload: response.data.wishlist,
-          });
+          dispatchRedux(wishListUpdate(response.data.wishlist));
         }
       } catch (error) {
         console.log(error);
@@ -45,7 +49,7 @@ export default function WishListCard({ item }) {
       );
 
       if (response.status === 201) {
-        dispatch({ type: "ADD_TO_CART", payload: item });
+        dispatchRedux(addToCart(item));
       }
     } catch (error) {
       console.log(error);
@@ -62,7 +66,7 @@ export default function WishListCard({ item }) {
       });
 
       if (response.status === 200) {
-        dispatch({ type: "REMOVE_FROM_CART", payload: item });
+        dispatchRedux(removeFromCart(item));
       }
     } catch (error) {
       console.log(error);
@@ -79,7 +83,7 @@ export default function WishListCard({ item }) {
       });
 
       if (response.status === 200) {
-        dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item });
+        dispatchRedux(removeFromWishList(item));
       }
     } catch (error) {
       console.log(error);
@@ -102,7 +106,7 @@ export default function WishListCard({ item }) {
         <p className="product-desc">
           Offer Price: <small>₹ {item.price}</small>
         </p>
-        {state.cartList.some((p) => p._id === item._id) ? (
+        {cartList.some((p) => p._id === item._id) ? (
           <button
             className="h-product-button"
             onClick={() => removeCartHandler(item)}

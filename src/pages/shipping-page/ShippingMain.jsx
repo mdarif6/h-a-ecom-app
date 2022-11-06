@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import "./ShippingPage.css";
-import { useProduct } from "../../product-context";
 
 import CartPrice from "../cart-page/CartPrice";
 import { Link, useNavigate } from "react-router-dom";
 import ShippingModal from "../modal/ShippingModal";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { addOrders } from "../../features/productSlice";
 
 export default function ShippingMain({ item }) {
-  const { state, dispatch } = useProduct();
+  const { cartList, address } = useSelector((state) => state.products);
+  const dispatchRedux = useDispatch();
   const [showShippingModal, setShowShippingModal] = useState(false);
-
   const [displayAddrID, setDisplayAddrID] = useState(null);
   const navigate = useNavigate();
 
-  let selectedAddress = state.address.find(
-    (item) => item._id === displayAddrID
-  );
+  let selectedAddress = address.find((item) => item._id === displayAddrID);
 
   function getTotalPrice(list) {
     return list.reduce((acc, current) => {
@@ -31,7 +30,7 @@ export default function ShippingMain({ item }) {
         "/api/user/orders",
         {
           order: {
-            cart: state.cartList,
+            cart: cartList,
             address: selectedAddress,
           },
         },
@@ -43,7 +42,8 @@ export default function ShippingMain({ item }) {
       );
 
       if (response.status === 201) {
-        dispatch({ type: "ADD_ORDERS", payload: response.data.orders });
+        dispatchRedux(addOrders(response.data.orders));
+
         navigate("/order-success");
       }
     } catch (error) {
@@ -54,7 +54,7 @@ export default function ShippingMain({ item }) {
   return (
     <main className="ha-cart-gtr">
       <div className="cart-heading">
-        <h3>MY CART ({state.cartList.length})</h3>
+        <h3>MY CART ({cartList.length})</h3>
       </div>
       <div className="h-cart-container">
         {/* do below */}
@@ -92,14 +92,14 @@ export default function ShippingMain({ item }) {
           <div className="cart-price">PRICE DETAILS</div>
           <div className="blank-div"></div>
           <div className="h-prices">
-            {state.cartList.map((item) => (
+            {cartList.map((item) => (
               <CartPrice key={item._id} item={item} />
             ))}
 
             <div className="blank-div"></div>
             <div className="item-pricee">
               <p className="total-price">TOTAL AMOUNT</p>
-              <p>{getTotalPrice(state.cartList)}</p>
+              <p>{getTotalPrice(cartList)}</p>
             </div>
 
             <div className="blank-div"></div>
@@ -107,12 +107,12 @@ export default function ShippingMain({ item }) {
 
             <button
               className={
-                state.cartList.length === 0 || !displayAddrID
+                cartList.length === 0 || !displayAddrID
                   ? "remove-btn price-btn disabled-btn"
                   : "remove-btn price-btn"
               }
               onClick={orderPlaceHandle}
-              disabled={state.cartList.length === 0 || !displayAddrID}
+              disabled={cartList.length === 0 || !displayAddrID}
             >
               PLACE ORDER
             </button>

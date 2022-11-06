@@ -10,7 +10,6 @@ import { Route, Routes } from "react-router-dom";
 import PrivateRoute from "./common/PrivateRoute";
 import Mockman from "mockman-js";
 import { useEffect } from "react";
-import { useAuth } from "./auth-context";
 import AccountPage from "./pages/account-page/AccountPage";
 import Modal from "./pages/modal/Modal";
 import ShippingPage from "./pages/shipping-page/ShippingPage";
@@ -20,15 +19,19 @@ import SuccessPage from "./pages/success-page/SuccessPage";
 import ConfirmationModal from "./pages/modal/ConfirmationModal";
 import PageNotFound from "./pages/page-not-found/PageNotFound";
 import LayoutComponent from "./pages/layout-component/LayoutComponent";
+import { useSelector, useDispatch } from "react-redux";
+import { settingAuthentication } from "../src/features/authSlice";
 
 function App() {
-  const { state, dispatch } = useAuth();
+  const { isAuthenticated } = useSelector((state) => state.authentication);
+
+  const dispatchRedux = useDispatch();
 
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
-      dispatch({ type: "SET_AUTH", payload: true });
+      dispatchRedux(settingAuthentication(true));
     } else {
-      dispatch({ type: "SET_AUTH", payload: false });
+      dispatchRedux(settingAuthentication(false));
     }
   }, []);
 
@@ -54,7 +57,7 @@ function App() {
               </PrivateRoute>
             }
           />
-          {state.isAuthenticated ? (
+          {isAuthenticated ? (
             <Route path="/products" element={<ProductsPage />} />
           ) : (
             <>

@@ -1,15 +1,15 @@
-import { useProduct } from "../../product-context";
 import WishListCard from "./WishListCard";
+import { useSelector } from "react-redux";
 export default function () {
-  const { state, dispatch } = useProduct();
+  const { wishList } = useSelector((state) => state.products);
 
   return (
     <main className="ha-wish-gtr">
       <div className="wishlist-heading">
-        <h2>My Wishlist ( {state.wishList.length} item)</h2>
+        <h2>My Wishlist ( {wishList.length} item)</h2>
       </div>
       <div className="ha-main-wishlist-product">
-        {state.wishList.map((item) => (
+        {wishList.map((item) => (
           <WishListCard key={item._id} item={item} />
         ))}
       </div>

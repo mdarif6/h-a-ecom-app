@@ -160,6 +160,7 @@
   height: 100%;
 }
 .below-img-text {
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -201,6 +202,7 @@
 
 .ha-logo-icons-wrapper {
   display: flex;
+  justify-content: flex-end;
 }
 .ha-logo-icons-wrapper div:last-child {
   margin-left: auto;

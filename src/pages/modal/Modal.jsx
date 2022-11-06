@@ -2,10 +2,10 @@ import "./Modal.css";
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
-import { useProduct } from "../../product-context";
+import { useDispatch } from "react-redux";
+import { addAddress } from "../../features/productSlice";
 
 export default function Modal({ setShowModal }) {
-  const { dispatch } = useProduct();
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState(0);
   const [pincode, setPincode] = useState(0);
@@ -14,6 +14,7 @@ export default function Modal({ setShowModal }) {
   const [landmark, setLandmark] = useState("");
   const [district, setDistrict] = useState("");
   const [state, setState] = useState("");
+  const dispatchRedux = useDispatch();
 
   function modalCloseHandle() {
     setShowModal(false);
@@ -44,7 +45,8 @@ export default function Modal({ setShowModal }) {
       );
 
       if (response.status === 201) {
-        dispatch({ type: "ADD_ADDRESS", payload: response.data.address });
+        dispatchRedux(addAddress(response.data.address));
+
         setShowModal(false);
       }
     } catch (error) {

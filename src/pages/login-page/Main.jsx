@@ -1,14 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-import { useAuth } from "../../auth-context";
+
+import { useDispatch } from "react-redux";
+import {
+  settingAuthentication,
+  addingUserInformation,
+} from "../../features/authSlice";
 
 export default function Main() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-  const { state, dispatch } = useAuth();
+
+  const dispatchRedux = useDispatch();
 
   async function submitHandler(e) {
     e.preventDefault();
@@ -23,8 +29,9 @@ export default function Main() {
         localStorage.setItem("authToken", response.data.encodedToken);
 
         navigate("/products");
-        dispatch({ type: "SET_AUTH", payload: true });
-        dispatch({ type: "ADD_USERINFO", payload: response.data.foundUser });
+        dispatchRedux(settingAuthentication(true));
+
+        dispatchRedux(addingUserInformation(response.data.foundUser));
       }
     } catch (error) {
       console.log(error);
@@ -45,11 +52,9 @@ export default function Main() {
         localStorage.setItem("email", response.data.foundUser.email);
 
         navigate("/");
-        dispatch({ type: "SET_AUTH", payload: true });
-        dispatch({
-          type: "ADD_USERINFO",
-          payload: response.data.foundUser,
-        });
+        dispatchRedux(settingAuthentication(true));
+
+        dispatchRedux(addingUserInformation(response.data.foundUser));
       }
     } catch (error) {
       console.log(error);

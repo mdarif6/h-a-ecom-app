@@ -1,7 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { useAuth } from "../../auth-context";
+
+import { useDispatch } from "react-redux";
+import {
+  settingAuthentication,
+  addingUserInformation,
+} from "../../features/authSlice";
 
 export default function Main() {
   const [register, setRegister] = useState({
@@ -10,7 +15,7 @@ export default function Main() {
     password: "",
   });
 
-  const { dispatch } = useAuth();
+  const dispatchRedux = useDispatch();
   const navigate = useNavigate();
 
   async function formSubmitHandler(e) {
@@ -24,8 +29,9 @@ export default function Main() {
         localStorage.setItem("firstname", response.data.createdUser.name);
         localStorage.setItem("email", response.data.createdUser.email);
         navigate("/");
-        dispatch({ type: "SET_AUTH", payload: true });
-        dispatch({ type: "ADD_USERINFO", payload: response.data.createdUser });
+        dispatchRedux(settingAuthentication(true));
+
+        dispatchRedux(addingUserInformation(response.data.createdUser));
       }
     } catch (error) {
       console.log(error);

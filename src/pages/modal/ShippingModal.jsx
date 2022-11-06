@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useProduct } from "../../product-context";
+
 import AddressShipCard from "../address-page/AddressShipCard";
+import { useSelector } from "react-redux";
 
 export default function ShippingModal({
-  displayAddrID,
   setDisplayAddrID,
   setShowShippingModal,
 }) {
-  const { state, dispatch } = useProduct();
+  const { address } = useSelector((state) => state.products);
 
   return (
     <div className="ha-shipping-modal-wrapper">
@@ -22,9 +22,9 @@ export default function ShippingModal({
             ></i>
           </div>
 
-          {state.address.length > 0 ? (
+          {address.length > 0 ? (
             <div>
-              {state.address.map((adr) => {
+              {address.map((adr) => {
                 return (
                   <>
                     <AddressShipCard

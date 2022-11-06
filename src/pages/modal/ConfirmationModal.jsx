@@ -1,10 +1,12 @@
 import React from "react";
 import axios from "axios";
 import "./Modal.css";
-import { useProduct } from "../../product-context";
+
+import { useDispatch } from "react-redux";
+import { addAddress } from "../../features/productSlice";
 
 export default function ConfirmationModal({ setShowConfirmationModal, adr }) {
-  const { state, dispatch } = useProduct();
+  const dispatchRedux = useDispatch();
 
   function closeConfirmationModal() {
     setShowConfirmationModal(false);
@@ -19,7 +21,7 @@ export default function ConfirmationModal({ setShowConfirmationModal, adr }) {
       });
 
       if (response.status === 200) {
-        dispatch({ type: "ADD_ADDRESS", payload: response.data.address });
+        dispatchRedux(addAddress(response.data.address));
       }
     } catch (error) {
       console.log(error);

@@ -1,9 +1,18 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useProduct } from "../../product-context";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  removeFromCart,
+  cartUpdate,
+  addToWishList,
+  incrementQuantity,
+  decrementQuantity,
+} from "../../features/productSlice";
 
 export default function CartCard({ item }) {
-  const { state, dispatch } = useProduct();
+  const { wishList } = useSelector((state) => state.products);
+
+  const dispatchRedux = useDispatch();
 
   useEffect(() => {
     async function getCartProduct() {
@@ -16,7 +25,7 @@ export default function CartCard({ item }) {
       });
 
       if (response.status === 200) {
-        dispatch({ type: "CART_UPDATE", payload: response.data.cart });
+        dispatchRedux(cartUpdate(response.data.cart));
       }
     }
     getCartProduct();
@@ -32,7 +41,7 @@ export default function CartCard({ item }) {
       });
 
       if (response.status === 200) {
-        dispatch({ type: "REMOVE_FROM_CART", payload: item });
+        dispatchRedux(removeFromCart(item));
       }
     } catch (error) {
       console.log(error);
@@ -55,7 +64,7 @@ export default function CartCard({ item }) {
       );
 
       if (response.status === 201) {
-        dispatch({ type: "ADD_TO_WISHLIST", payload: item });
+        dispatchRedux(addToWishList(item));
       }
     } catch (error) {
       console.log(error);
@@ -81,7 +90,7 @@ export default function CartCard({ item }) {
                 if (item.qty === 1) {
                   removeCartHandler(item);
                 } else {
-                  dispatch({ type: "DECREMENT", payload: item._id });
+                  dispatchRedux(decrementQuantity(item._id));
                 }
               }}
             ></i>
@@ -90,7 +99,7 @@ export default function CartCard({ item }) {
           <p>
             <i
               className="fas fa-plus-circle"
-              onClick={() => dispatch({ type: "INCREMENT", payload: item._id })}
+              onClick={() => dispatchRedux(incrementQuantity(item._id))}
             ></i>
           </p>
         </div>
@@ -103,7 +112,7 @@ export default function CartCard({ item }) {
             Remove From Cart
           </button>
 
-          {state.wishList.some((p) => p._id === item._id) ? (
+          {wishList.some((p) => p._id === item._id) ? (
             <button
               className="move-btn"
               onClick={() => removeCartHandler(item)}

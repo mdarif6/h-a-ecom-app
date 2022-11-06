@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import img1 from "../../assets/images/logo.png";
-import { useAuth } from "../../auth-context";
-import { useProduct } from "../../product-context";
+
+import { useSelector } from "react-redux";
 
 export default function HeaderHome() {
-  const { state, dispatch } = useProduct();
-  const { state: authState, dispatch: authDispatch } = useAuth();
+  const { sortByCategory, cartList, wishList } = useSelector(
+    (state) => state.products
+  );
+  const { isAuthenticated } = useSelector((state) => state.authentication);
 
   return (
     <>
@@ -32,7 +34,7 @@ export default function HeaderHome() {
           </div>
           <div className="header-icons">
             <div className="ha-nav-icons">
-              {authState.isAuthenticated ? (
+              {isAuthenticated ? (
                 <div className="badge-icon">
                   <div className="badge-on-icon">
                     <Link to="/my-account">
@@ -52,7 +54,7 @@ export default function HeaderHome() {
                     <i className="fas fa-heart"></i>
                   </Link>
                 </div>
-                <span className="badge-number">{state.wishList.length}</span>
+                <span className="badge-number">{wishList.length}</span>
               </div>
 
               <div className="badge-icon">
@@ -61,7 +63,7 @@ export default function HeaderHome() {
                     <i className="fas fa-shopping-cart"></i>
                   </Link>
 
-                  <span className="badge-number">{state.cartList.length}</span>
+                  <span className="badge-number">{cartList.length}</span>
                 </div>
               </div>
             </div>
